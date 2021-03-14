@@ -9,7 +9,7 @@
 
     <!-- Site Properties -->
     {% block title %}
-        <title>Homepage - Semantic</title>
+        <title>Homepage - Nursing Home and Clinic</title>
     {% endblock %}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
     {% block commonCss %}
@@ -159,22 +159,25 @@
 <!-- Following Menu -->
 <div class="ui large top fixed hidden menu">
     <div class="ui container">
+        <a class="active item" href="{% url 'homeApp:index' %}" style="padding: 0">
+            <img src="{% static 'images/logo.png' %}" alt="" style="width: 50px">
+        </a>
         <a class="active item" href="{% url 'homeApp:index' %}">Home</a>
-         {% if request.user.is_authenticated %}
-        <a class="item" href="{% url 'homeApp:registrationformA' %}">Apply New</a>
-        <a class="item" href="{% url 'homeApp:applicantDashboard' %}">Applicant Dashboard</a>
-        <a class="item">Applicant Profile</a>
-      {% endif %}
+        {% if request.user.is_authenticated %}
+            <a class="item" href="{% url 'homeApp:registrationformA' %}">Apply New</a>
+            <a class="item" href="{% url 'homeApp:applicantDashboard' %}">Applicant Dashboard</a>
+            <a class="item">Applicant Profile</a>
+        {% endif %}
         <div class="right menu">
 
- {% if request.user.is_authenticated %}
-                 <div class="item">
-                <a class="ui primary button" href="{% url 'homeApp:logout_user' %}">Logout</a>
-            </div>
+            {% if request.user.is_authenticated %}
+                <div class="item">
+                    <a class="ui primary button" href="{% url 'homeApp:logout_user' %}">Logout</a>
+                </div>
             {% else %}
-            <div class="item" onclick="loginModalBtn()">
-                <a class="ui button">Log in / Sign Up</a>
-            </div>
+                <div class="item" onclick="loginModalBtn()">
+                    <a class="ui button">Log in / Sign Up</a>
+                </div>
             {% endif %}
 
         </div>
@@ -183,13 +186,16 @@
 
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
-    <a class="active item" href="{% url 'homeApp:index' %}">Home</a>
-     {% if request.user.is_authenticated %}
-    <a class="item" href="{% url 'homeApp:registrationformA' %}">Apply New</a>
-    <a class="item" href="{% url 'homeApp:applicantDashboard' %}">Applicant Dashboard</a>
-    <a class="item">Applicant Profile</a>
+    <a class="active item" href="{% url 'homeApp:index' %}">
+        <img src="{% static 'images/logo.png' %}" alt="" style="width: 50px;">
+    </a>
+    <a class="item" href="{% url 'homeApp:index' %}">Home</a>
+    {% if request.user.is_authenticated %}
+        <a class="item" href="{% url 'homeApp:registrationformA' %}">Apply New</a>
+        <a class="item" href="{% url 'homeApp:applicantDashboard' %}">Applicant Dashboard</a>
+        <a class="item">Applicant Profile</a>
     {% endif %}
-{% comment %}
+    {% comment %}
          <a class="item" onclick="loginModalBtn()">Login In / Signup</a>
     {% else %}
     <a class="item" href="{% url 'homeApp:logout_user' %}">Logout</a>
@@ -206,17 +212,21 @@
                 <a class="toc item">
                     <i class="sidebar icon"></i>
                 </a>
+
+                <a class="active item" href="{% url 'homeApp:index' %}" style="padding: 0">
+                    <img src="{% static 'images/logo.png' %}" alt="" style="width: 50px;">
+                </a>
                 <a class="active item" href="{% url 'homeApp:index' %}">Home</a>
-                 {% if request.user.is_authenticated %}
-                <a class="item" href="{% url 'homeApp:registrationformA' %}">Apply New</a>
-                <a class="item" href="{% url 'homeApp:applicantDashboard' %}">Appicant Dashboard</a>
-                <a class="item">Appicant Profile</a>
-            {% endif %}
+                {% if request.user.is_authenticated %}
+                    <a class="item" href="{% url 'homeApp:registrationformA' %}">Apply New</a>
+                    <a class="item" href="{% url 'homeApp:applicantDashboard' %}">Appicant Dashboard</a>
+                    <a class="item">Appicant Profile</a>
+                {% endif %}
                 <div class="right item">
- {% if request.user.is_authenticated %}
-                        <a href="{% url 'homeApp:logout_user' %}" class="ui inverted button" >Logout</a>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'homeApp:logout_user' %}" class="ui inverted button">Logout</a>
                     {% else %}
-                    <a class="ui inverted button" onclick="loginModalBtn()">Log in / Sign Up</a>
+                        <a class="ui inverted button" onclick="loginModalBtn()">Log in / Sign Up</a>
                     {% endif %}
                 </div>
             </div>
@@ -225,99 +235,164 @@
         {% block body %}
             <div class="ui text container">
                 <h1 class="ui inverted header">
-                    Imagine-a-Company
+                    Directorate Of Health Services, Manipur.
                 </h1>
-                <h2>Do whatever you want when you want to.</h2>
-                <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+                <h2>Nursing Home and Clinic Registration.</h2>
+
+                <a href="#Details" class="ui huge primary button">Read More <i class="right arrow icon"></i></a>
+
             </div>
         {% endblock %}
     </div>
     {% block mainBody %}
+        <div class="ui vertical stripe segment" id="Details">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <h3 class="ui header">Manipur Nursing Homes and Clinics Registration Act, 1992 & Rules, 1993 and
+                            Procedures for Fresh registration of Nursing homes, Maternity homes and Clinics in the state
+                            of Manipur.</h3>
+                        <p>1. Intending persons shall make an application to the Supervising Authority (Director of
+                            Health Services) for registration in the prescribed ‘FORM-A’ at least one month before the
+                            date of carrying on a nursing home or clinic.</p>
+                        <p>2. All the mandatory documents, type of nursing home or clinic, Facilities Applied, relevant
+                            central and state guidelines on State Pollution Control Board, Bio-Medical Waste Disposal,
+                            (PC)PNDT certificate, AERB Authorization, EPF scheme application, NOC Fire Service Dept
+                            shall be submitted as given in Checklist.</p>
+                        <p>3. Applicant shall submit registration fees as under:
+                        <ul>
+                            <li>a. Rs. 2000/- plus Rs. 30/- per bed per year for a clinic or nursing home having bed not
+                                more than 10.
+                            </li>
+                            <li>b. Rs. 2000/- plus Rs. 50/- per bed per year for a clinic or nursing home having 10-50
+                                bed.
+                            </li>
+                            <li>c. Rs. 2000/- plus Rs. 75/- per bed per year for a clinic or nursing home having more
+                                than 50 bed.
+                            </li>
+                        </ul>
+
+                        </p>
+                        <p>4. Submitted documents will be checked for any deficiency. If there is any, the applicant
+                            will be informed.</p>
+                        <p>5. An inspection team including the Additional Director (MC), Deputy Director (MC) and the
+                            concerned Specialists from the Manipur Health Services, formed under the Supervising
+                            Authority will inspect the clinic or nursing home in respect of manpower, facilities
+                            applied, infrastructures, provisions of facilities and services, record keeping etc.</p>
+                        <p>6. The inspection team will submit the inspection report for recommendation of suitability
+                            and feasibility for registration of the clinic or nursing home to the Supervising
+                            Authority.</p>
+                        <p>7. The Supervising Authority (Director of Health Service) if satisfied that all the
+                            conditions including the provisions of facilities and services as specified in Rule 15 are
+                            fulfilled, the applicant is registered in respect of the nursing home or clinic and issue
+                            the certificate in FORM-B signed by him.
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <div class="ui vertical stripe segment">
             <div class="ui middle aligned stackable grid container">
                 <div class="row">
-                    <div class="eight wide column">
-                        <h3 class="ui header">We Help Companies and Companions</h3>
-                        <p>We can give your company superpowers to do things that they never thought possible. Let us
-                            delight your customers and empower your needs...through pure data analytics.</p>
-                        <h3 class="ui header">We Make Bananas That Can Dance</h3>
-                        <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be
-                            bioengineered.</p>
+                    <div class="sixteen wide column">
+                        <h3 class="ui header">Documents required for registration</h3>
+                        <p>1. Forwarding letter to the Director of Health Services</p>
+                        <p>2. Academic Qualification Certificates & Registration Certificates (MMC for doctors and MNC
+                            for nurses)</p>
+                        <p>3. Rent affidavit from the land owner /Copy of Patta, if the applicant owns the land.</p>
+                        <p>4. Method of Bio-Medical Waste Disposal/ Certificate from CBWTF.</p>
+                        <p>5. MPCB Consent to operate/establish, Authorization certificate.</p>
+                        <p>6. AERB Authorization for X-Ray, CT-Scan & MRI installation.</p>
+                        <p>7. (PC) PNDT certificate from FW dept. for USG installation.</p>
+                        <p>8. Certificate for Non-Forfeiture of Original Certificates of the staffs</p>
+                        <p>9. Fire Safety System adopted including escape door, stairs, signage etc. No Objection
+                            Certificate from the Fire Service Dept.</p>
+                        <p>Schematic diagram of floor wise rooms with labeling.</p>
                     </div>
-                    <div class="six wide right floated column">
-                        <img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="center aligned column">
-                        <a class="ui huge button">Check Them Out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ui vertical stripe quote segment">
-            <div class="ui equal width stackable internally celled grid">
-                <div class="center aligned row">
-                    <div class="column">
-                        <h3>"What a Company"</h3>
-                        <p>That is what they all say about us</p>
-                    </div>
-                    <div class="column">
-                        <h3>"I shouldn't have gone with their competitor."</h3>
-                        <p>
-                            <img src="assets/images/avatar/nan.jpg" class="ui avatar image"> <b>Nan</b> Chief Fun
-                            Officer Acme Toys
-                        </p>
-                    </div>
+
                 </div>
             </div>
         </div>
+
         <div class="ui vertical stripe segment">
-            <div class="ui text container">
-                <h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3>
-                <p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing
-                    nothing by providing massive amounts of whitespace and generic content that can seem massive,
-                    monolithic and worth your attention.</p>
-                <a class="ui large button">Read More</a>
-                <h4 class="ui horizontal header divider">
-                    <a href="#">Case Studies</a>
-                </h4>
-                <h3 class="ui header">Did We Tell You About Our Bananas?</h3>
-                <p>Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but its really
-                    true. It took years of gene splicing and combinatory DNA research, but our bananas can really
-                    dance.</p>
-                <a class="ui large button">I'm Still Quite Interested</a>
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <h3 class="ui header">Documents required for registration</h3>
+                        <p>1. Forwarding letter to the Director of Health Services</p>
+                        <p>2. Academic Qualification Certificates & Registration Certificates (MMC for doctors and MNC
+                            for nurses)</p>
+                        <p>3. Rent affidavit from the land owner /Copy of Patta, if the applicant owns the land.</p>
+                        <p>4. Method of Bio-Medical Waste Disposal/ Certificate from CBWTF.</p>
+                        <p>5. MPCB Consent to operate/establish, Authorization certificate.</p>
+                        <p>6. AERB Authorization for X-Ray, CT-Scan & MRI installation.</p>
+                        <p>7. (PC) PNDT certificate from FW dept. for USG installation.</p>
+                        <p>8. Certificate for Non-Forfeiture of Original Certificates of the staffs</p>
+                        <p>9. Fire Safety System adopted including escape door, stairs, signage etc. No Objection
+                            Certificate from the Fire Service Dept.</p>
+                        <p>Schematic diagram of floor wise rooms with labeling.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+         <div class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <h3 class="ui header">Manipur Nursing Homes and Clinics Registration Act, 1992 & Rules, 1993 and Procedures for Renewal of registration of Nursing homes, Maternity homes and Clinics in the state of Manipur.</h3>
+                        <p>1. Application for renewal shall be submitted to the Supervising Authority (Director of Health Services) in the month of January, i.e. two months prior to the expiry of registration in ‘FORM D’ for every three years.</p>
+                        <p>2. All the mandatory documents, Facilities Applied (addition), renewed certificates on State Pollution Control Board, Bio-Medical Waste Disposal, (PC)PNDT certificate, AERB Authorization, EPF scheme application, NOC from Fire Service Dept. if any shall be submitted as given in the renewal Checklist.</p>
+                        <p>3. Applicant shall submit registration renewal fees as under:
+                        <ul>
+                        <li>a. Renewal fee shall be Rs. 1000/- plus Rs. 60/- per bed per year for three years.</li>
+                    </ul>
+                        </p>
+                        <p>4. Submitted documents will be checked for any deficiency. If there is any, the applicant will be informed.</p>
+                        <p>5. An inspection team including the Additional Director (MC), Deputy Director (MC) and the concerned Specialists from the Manipur Health Services, formed under the Supervising Authority will inspect the clinic or nursing home in respect of manpower, facilities applied/continued, infrastructures, provisions of facilities and services, record keeping etc.</p>
+                        <p>6. The inspection team will submit the inspection report for recommendation of suitability and feasibility for renewal of registration of the clinic or nursing home to the Supervising Authority.</p>
+                        <p>7. The Supervising Authority (Director of Health Services) if satisfied that all the conditions including the provisions of facilities and services as specified in Rule 15 are fulfilled, the registration in respect of the nursing home or clinic is renewed and issue the certificate in FORM-B signed by him.</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+                <div class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <h3 class="ui header">All the mandatory documents</h3>
+                        <p>1. Facilities Applied (addition).</p>
+                        <p>2. Renewed certificates on State Pollution Control Board.</p>
+                        <p>3. Bio-Medical Waste Disposal.</p>
+                        <p>4. (PC)PNDT certificate, AERB Authorization.</p>
+                        <p>5. EPF scheme application.</p>
+                        <p>6. NOC from Fire Service Dept.</p>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     {% endblock %}
     <div class="ui inverted vertical footer segment">
         <div class="ui container">
             <div class="ui stackable inverted divided equal height stackable grid">
+
                 <div class="three wide column">
-                    <h4 class="ui inverted header">About</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">Sitemap</a>
-                        <a href="#" class="item">Contact Us</a>
-                        <a href="#" class="item">Religious Ceremonies</a>
-                        <a href="#" class="item">Gazebo Plans</a>
-                    </div>
-                </div>
-                <div class="three wide column">
-                    <h4 class="ui inverted header">Services</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">Banana Pre-Order</a>
-                        <a href="#" class="item">DNA FAQ</a>
-                        <a href="#" class="item">How To Access</a>
-                        <a href="{% url 'homeApp:adminLogin' %}" class="item">Admin Login</a>
-                    </div>
-                </div>
-                <div class="seven wide column">
-                    <h4 class="ui inverted header">Footer Header</h4>
-                    <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                    <a href="{% url 'homeApp:adminLogin' %}" class="item">Admin Login</a>
                 </div>
             </div>
+
         </div>
     </div>
+</div>
 </div>
 <div class="ui modal tiny" id="LoginRegister">
     <i class="close icon"></i>
@@ -325,7 +400,7 @@
         <div class="sixteen wide mobile six wide mobile six wide computer column ">
             <h3 class="ui header">
                 Login
-{% comment %}
+                {% comment %}
                 <div class="sub header"><p>Get access to your Orders, Wishlist and Recommendations</p></div>
 {% endcomment %}
             </h3>
@@ -382,7 +457,7 @@
                     <input type="password" name="passwordRc" placeholder="Confirm Password"
                            id="registerPasswordConfirm">
                 </div>
-   {% comment %}             <div class="fields">
+                {% comment %}             <div class="fields">
                     <div class="nine wide field">
                         <label>OTP</label>
                         <input type="number" name="OTP" id="OTP" placeholder="Enter OTP">
@@ -416,140 +491,46 @@
 
 <script>
 
-            function loginModalBtn() {
+    function loginModalBtn() {
 
-            $('#LoginRegister').modal('show');
-            loginNregister('login');
+        $('#LoginRegister').modal('show');
+        loginNregister('login');
 
-        }
+    }
     function loginNregister(q) {
-            if (q == 'register') {
-                $('#registerDiv').css('display', 'flex');
-                $('#loginBtn').css('display', 'flex');
-                $('#loginDiv').css('display', 'none');
-                $('#registerBtn').css('display', 'none');
-            }
-            else {
-                $('#registerDiv').css('display', 'none');
-                $('#loginBtn').css('display', 'none');
-                $('#loginDiv').css('display', 'flex');
-                $('#registerBtn').css('display', 'flex');
-            }
-
+        if (q == 'register') {
+            $('#registerDiv').css('display', 'flex');
+            $('#loginBtn').css('display', 'flex');
+            $('#loginDiv').css('display', 'none');
+            $('#registerBtn').css('display', 'none');
+        }
+        else {
+            $('#registerDiv').css('display', 'none');
+            $('#loginBtn').css('display', 'none');
+            $('#loginDiv').css('display', 'flex');
+            $('#registerBtn').css('display', 'flex');
         }
 
-           function CreateCustomer() {
-            var email = $('#registerEmail').val();
-            var password = $('#registerPassword').val();
-            var cpassword = $('#registerPasswordConfirm').val();
-{#            var OTP = $('#OTP').val();#}
-            var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
+    }
+
+    function CreateCustomer() {
+        var email = $('#registerEmail').val();
+        var password = $('#registerPassword').val();
+        var cpassword = $('#registerPasswordConfirm').val();
+        {#            var OTP = $('#OTP').val();#}
+        var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
 
 
-            if (email !== '' && password !== '' && cpassword !== '') {
-                if (password.length > 7 && password === cpassword) {
+        if (email !== '' && password !== '' && cpassword !== '') {
+            if (password.length > 7 && password === cpassword) {
 
-                    var form_data = new FormData();
-                    form_data.append('Email', email);
-                    form_data.append('Password', password);
-{#                    form_data.append('OTP', OTP);#}
-                    $.ajax({
-                        type: 'post',
-                        url: '{% url "homeApp:register_applicant" %}',
-                        data: form_data,
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-
-                        success: function (response) {
-                            if (response.message === 'success') {
-                                $('body')
-                                    .toast({
-                                        class: 'success',
-                                        title: 'Account Created Successfully.',
-                                        message: 'Welcome!',
-                                        showProgress: 'bottom',
-                                        classProgress: 'red',
-                                        position: 'top center',
-
-                                    });
-                                $('#LoginRegister').modal('hide');
-                                $('#registerForm').trigger("reset");
-                            }
-                            else if (response.message === 'alreadyExist') {
-                                $('body')
-                                    .toast({
-                                        class: 'error',
-                                        title: 'User Already Exist.',
-                                        message: 'Please try log in.',
-                                        showProgress: 'bottom',
-                                        classProgress: 'grey',
-                                        position: 'top center',
-
-                                    });
-
-                            }
-                            else {
-                                $('body')
-                                    .toast({
-                                        class: 'warning',
-                                        title: 'Something Went Wrong.',
-                                        message: 'Please try again.',
-                                        showProgress: 'bottom',
-                                        classProgress: 'red',
-                                        position: 'top center',
-
-                                    });
-                            }
-
-                        },
-                        error: function (e) {
-
-                            console.log(e);
-                        }
-                    });
-
-                }
-                else {
-                    $('body')
-                        .toast({
-                            class: 'warning',
-                            title: 'Fields Requires',
-                            message: 'Please make sure password length is at least 7 character long and password is matched correctly.',
-                            showProgress: 'bottom',
-                            classProgress: 'red',
-                            position: 'top center',
-
-                        })
-                    ;
-                }
-            }
-            else {
-                $('body')
-                    .toast({
-                        class: 'warning',
-                        title: 'Fields Requires',
-                        message: 'Please fill all the details correctly.',
-                        showProgress: 'bottom',
-                        classProgress: 'red',
-                        position: 'top center',
-
-                    })
-                ;
-            }
-        }
-
-            function LoginCustomer() {
-            var email = $('#loginEmail').val();
-            var password = $('#loginPassword').val();
-            var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
-            if (email !== '' && password !== '') {
                 var form_data = new FormData();
-                form_data.append('username', email);
-                form_data.append('password', password);
+                form_data.append('Email', email);
+                form_data.append('Password', password);
+                {#                    form_data.append('OTP', OTP);#}
                 $.ajax({
                     type: 'post',
-                    url: '{% url "homeApp:login_applicant" %}',
+                    url: '{% url "homeApp:register_applicant" %}',
                     data: form_data,
                     contentType: false,
                     cache: false,
@@ -560,7 +541,7 @@
                             $('body')
                                 .toast({
                                     class: 'success',
-                                    title: 'Login Successful.',
+                                    title: 'Account Created Successfully.',
                                     message: 'Welcome!',
                                     showProgress: 'bottom',
                                     classProgress: 'red',
@@ -568,16 +549,14 @@
 
                                 });
                             $('#LoginRegister').modal('hide');
-                            location.reload(true);
-
-
+                            $('#registerForm').trigger("reset");
                         }
-                        else if (response.message === 'fail') {
+                        else if (response.message === 'alreadyExist') {
                             $('body')
                                 .toast({
                                     class: 'error',
-                                    title: 'Wrong Credential.',
-                                    message: 'Please try again.',
+                                    title: 'User Already Exist.',
+                                    message: 'Please try log in.',
                                     showProgress: 'bottom',
                                     classProgress: 'grey',
                                     position: 'top center',
@@ -589,7 +568,7 @@
                             $('body')
                                 .toast({
                                     class: 'warning',
-                                    title: 'Invalid Credential.',
+                                    title: 'Something Went Wrong.',
                                     message: 'Please try again.',
                                     showProgress: 'bottom',
                                     classProgress: 'red',
@@ -604,13 +583,14 @@
                         console.log(e);
                     }
                 });
+
             }
             else {
                 $('body')
                     .toast({
                         class: 'warning',
                         title: 'Fields Requires',
-                        message: 'Please fill Email and Password.',
+                        message: 'Please make sure password length is at least 7 character long and password is matched correctly.',
                         showProgress: 'bottom',
                         classProgress: 'red',
                         position: 'top center',
@@ -618,15 +598,109 @@
                     })
                 ;
             }
-
-
         }
+        else {
+            $('body')
+                .toast({
+                    class: 'warning',
+                    title: 'Fields Requires',
+                    message: 'Please fill all the details correctly.',
+                    showProgress: 'bottom',
+                    classProgress: 'red',
+                    position: 'top center',
+
+                })
+            ;
+        }
+    }
+
+    function LoginCustomer() {
+        var email = $('#loginEmail').val();
+        var password = $('#loginPassword').val();
+        var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
+        if (email !== '' && password !== '') {
+            var form_data = new FormData();
+            form_data.append('username', email);
+            form_data.append('password', password);
+            $.ajax({
+                type: 'post',
+                url: '{% url "homeApp:login_applicant" %}',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+
+                success: function (response) {
+                    if (response.message === 'success') {
+                        $('body')
+                            .toast({
+                                class: 'success',
+                                title: 'Login Successful.',
+                                message: 'Welcome!',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                        $('#LoginRegister').modal('hide');
+                        location.reload(true);
+
+
+                    }
+                    else if (response.message === 'fail') {
+                        $('body')
+                            .toast({
+                                class: 'error',
+                                title: 'Wrong Credential.',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'grey',
+                                position: 'top center',
+
+                            });
+
+                    }
+                    else {
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                title: 'Invalid Credential.',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+
+                },
+                error: function (e) {
+
+                    console.log(e);
+                }
+            });
+        }
+        else {
+            $('body')
+                .toast({
+                    class: 'warning',
+                    title: 'Fields Requires',
+                    message: 'Please fill Email and Password.',
+                    showProgress: 'bottom',
+                    classProgress: 'red',
+                    position: 'top center',
+
+                })
+            ;
+        }
+
+
+    }
 
 </script>
 
 
 </body>
-
 
 
 </html>
