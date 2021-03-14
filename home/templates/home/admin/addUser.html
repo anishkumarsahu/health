@@ -1,0 +1,179 @@
+{% extends 'home/admin/roHomepage.html' %}
+{% load static %}
+{% block title %}
+    <title>Add User</title>
+{% endblock %}
+{% block body %}
+    <div class="ui segment">
+        <h3><i class="user icon"></i>Add User</h3>
+    </div>
+    <form id="addUserForm" class="ui raised padded text container form"
+          action="{% url 'homeApp:add_admin_user_post' %}"
+          method="post">{% csrf_token %}
+        <h3 class="ui dividing header">General Information</h3>
+        <div class="field">
+            <label>Name: </label>
+            <div class=" field">
+                <input id="name" type="text" required name="name" placeholder="Name"
+                       autocomplete="off">
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="field">
+                <label>Email :</label>
+                <input id="email" type="text" required name="email" placeholder="Email" autocomplete="off" onblur="checkUsername()">
+            </div>
+            <div class="field">
+                <label>Phone Number :</label>
+                <input id="phoneNumber" type="number" required name="phoneNumber" placeholder="Phone Number"
+                       autocomplete="off">
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Password :</label>
+                <input id="password" type="text" name="password" placeholder="Password"
+                       autocomplete="off">
+            </div>
+            <div class="field">
+                <label>User Type :</label>
+                <select class="ui dropdown" id="userType" name="userType">
+                    <option value="Inspector">Inspector</option>
+                    <option value="RO">RO</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="ui field padded" style="text-align: center;margin-bottom: 1rem">
+            <button type="button" onclick="UserValidation()" class="ui green button " id="saveBtn">Add User</button>
+        </div>
+    </form>
+
+{% endblock %}
+    {% block myjs %}
+        <script>
+            function UserValidation() {
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var phoneNumber = $('#phoneNumber').val();
+                var password = $('#password').val();
+                var userType = $('#userType').val();
+                var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+                if (reg.test(email) == false) {
+                    $('body')
+                        .toast({
+                            class: 'error',
+                            title: 'Invalid Email.',
+                            message: 'Please try again.',
+                            showProgress: 'bottom',
+                            classProgress: 'white',
+                            position: 'top center',
+
+                        });
+                    return false;
+                }
+                else {
+                    if (name !== '' && email !== '' && phoneNumber !== '' && password !== ''
+                        && userType !== '') {
+                        successTost("Successfully");
+                        $('#addUserForm').submit();
+                    }
+                    else {
+                        alertTost("Please fill all the details correctly.");
+                    }
+                }
+            }
+            function alertTost(x) {
+                $('body')
+                    .toast({
+                        class: 'warning',
+                        title: 'All Fields Requires',
+                        message: x,
+                        showProgress: 'bottom',
+                        classProgress: 'red',
+                        position: 'top center',
+                    })
+                ;
+            }
+
+            function successTost(x) {
+                $('body')
+                    .toast({
+                        class: 'success',
+                        title: 'Form Submit',
+                        message: x,
+                        showProgress: 'bottom',
+                        classProgress: 'green',
+                        position: 'top center',
+                    })
+                ;
+            }
+
+
+                function checkUsername() {
+                var username = $('#email').val();
+                $('#username').val(username);
+                if (username.length >= 3 && validateEmail(username) === true) {
+
+
+                    $.ajax({
+                        type: 'get',
+                        url: "{% url 'homeApp:user_name_exist' %}?q=" + username,
+                        success: function (response) {
+                            if (response.canUse === 'Yes') {
+                                $('body')
+                                    .toast({
+                                        class: 'success',
+                                        title: 'Available',
+                                        message: '' + response.message,
+                                        showProgress: 'bottom',
+                                        classProgress: 'red',
+                                        position: 'top center',
+
+                                    });
+                                $('#saveBtn').prop('disabled', false);
+                            }
+
+                            else {
+                                $('body')
+                                    .toast({
+                                        class: 'error',
+                                        title: 'Not Available',
+                                        message: '' + response.message,
+                                        showProgress: 'bottom',
+                                        classProgress: 'red',
+                                        position: 'top center',
+
+                                    });
+                                $('#saveBtn').prop('disabled', true);
+                            }
+                        },
+                        error: function () {
+                            $('body')
+                                .toast({
+                                    class: 'error',
+                                    title: 'Not Available',
+                                    message: '' + response.message,
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                        }
+                    });
+                }
+                else {
+                    $('#errorMsg').html('');
+                    $('#saveBtn').prop('disabled', true);
+                }
+
+            }
+                    function validateEmail(email) {
+                var re = /\S+@\S+\.\S+/;
+                return re.test(email);
+            }
+
+
+        </script>
+    {% endblock %}

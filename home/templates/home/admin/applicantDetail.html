@@ -1,0 +1,461 @@
+{% extends 'home/admin/roHomepage.html' %}
+{% load static %}
+{% block title %}
+    <title>Applicant Detail</title>
+{% endblock %}
+{% block customCss %}
+    <style>
+    .ui.piled.segment, .ui.piled.segments {
+    margin: 1em 0;
+
+    z-index: auto;
+}
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="ui segment">
+        <h3><i class="user icon"></i>Applicant Detail</h3>
+    </div>
+    <div class="ui grid padded">
+        <p>Check list for Fresh Registration of Clinics under the Manipur Nursing Homes and Clinics RegistrationsAct,
+            1992 (MNHCR Act).</p>
+
+
+        <table class="ui very padded table">
+            <thead>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Documents/Certificates/Information</th>
+                <th>Submitted <br>(Yes/No)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+
+                <td>Forwarding letter to the Director of Heath Services
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+
+                <td>Form - A
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+
+                <td>Campus
+                    <ol style="list-style-type:upper-roman">
+                        <li>Parking space - Description</li>
+                        <li>Building Structure - pucca, semi-pucca etc</li>
+                        <li>Number of floor</li>
+                        <li>Number of rooms used , area of rooms</li>
+                        <li>Schematic diagram of floor wise rooms with labelling.</li>
+                    </ol>
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Staff list
+                    <br>
+                    (Separate list for doctors, nurses and other staffs etc.)
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Academic Qualification Certificates & Registration Certificates
+                    (MMC for Doctors, Dental Tribunal for Dental Surgeons and MNC
+                    for nurses)
+                    <ol style="list-style-type:upper-roman">
+                        <li>Proprietor</li>
+                        <li>Managerial staffs</li>
+                        <li>Doctors</li>
+                        <li>Nurses</li>
+                        <li> Laboratory Technician</li>
+                        <li>Radiology Technicians</li>
+                        <li>Dialysis Technicians</li>
+                        <li>Pharmacist</li>
+                        <li>Ophthalmic Asst./Optometrist</li>
+                        <li>Physiotherapist</li>
+                    </ol>
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Rates/Tariff
+                    <ol style="list-style-type:upper-roman">
+                        <li>OPD</li>
+                        <li>General wards</li>
+                        <li>Special/Paying accommodation</li>
+                        <li>Treatment charges</li>
+                        <li>Laboratory Investigations, X-ray etc.</li>
+                        <li>Others if any</li>
+
+                    </ol>
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Rent affidavit from the land owner /
+                    Copy of Patta, if the applicant owns the land.
+
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Appointment order with nature of employment
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Acceptance Certificate by the staff
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Method of Bio-Medical Waste Disposal/
+                    Certificate from CBWTF.
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>MPCB Consent to operatelestablish, Authorization certificate
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>AERB Authorization for X-Ray, CT-Scan & MRI installation.
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>(PC)PNDT certificate from FW dept. for USG installation.
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Number of beds
+                    <ol style="list-style-type:upper-roman">
+                        <li>Maternity</li>
+                        <li>Others</li>
+                    </ol>
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>EPF scheme application (> 20 staffs )
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>Issue a Certificate for Non-Forfeiture of Original Certificates of
+                    the staffs
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>Fire Safety System adopted including escape door, stairs,
+                    signage etc. No Objection Certificate from the Fire Service
+                    Dept.
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>Operation Theatre:
+                    <ol style="list-style-type:upper-roman">
+                        <li>outlay</li>
+                        <li>Zones</li>
+                        <li>number</li>
+                        <li>major/minor,</li>
+                        <li>equipments list of O.T.</li>
+
+                    </ol>
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>Equipments list of other specialties
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>Availability of emergency medicines
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>Availability of round the clock chemist shop
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>Professional Tax
+                </td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="public">
+                        <label></label>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+{% endblock %}
+{% block myjs %}
+    <script>
+        function UserValidation() {
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var phoneNumber = $('#phoneNumber').val();
+            var password = $('#password').val();
+            var userType = $('#userType').val();
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if (reg.test(email) == false) {
+                $('body')
+                    .toast({
+                        class: 'error',
+                        title: 'Invalid Email.',
+                        message: 'Please try again.',
+                        showProgress: 'bottom',
+                        classProgress: 'white',
+                        position: 'top center',
+
+                    });
+                return false;
+            }
+            else {
+                if (name !== '' && email !== '' && phoneNumber !== '' && password !== ''
+                    && userType !== '') {
+                    successTost("Successfully");
+                    $('#addUserForm').submit();
+                }
+                else {
+                    alertTost("Please fill all the details correctly.");
+                }
+            }
+        }
+        function alertTost(x) {
+            $('body')
+                .toast({
+                    class: 'warning',
+                    title: 'All Fields Requires',
+                    message: x,
+                    showProgress: 'bottom',
+                    classProgress: 'red',
+                    position: 'top center',
+                })
+            ;
+        }
+
+        function successTost(x) {
+            $('body')
+                .toast({
+                    class: 'success',
+                    title: 'Form Submit',
+                    message: x,
+                    showProgress: 'bottom',
+                    classProgress: 'green',
+                    position: 'top center',
+                })
+            ;
+        }
+
+
+        function checkUsername() {
+            var username = $('#email').val();
+            $('#username').val(username);
+            if (username.length >= 3 && validateEmail(username) === true) {
+
+
+                $.ajax({
+                    type: 'get',
+                    url: "{% url 'homeApp:user_name_exist' %}?q=" + username,
+                    success: function (response) {
+                        if (response.canUse === 'Yes') {
+                            $('body')
+                                .toast({
+                                    class: 'success',
+                                    title: 'Available',
+                                    message: '' + response.message,
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                            $('#saveBtn').prop('disabled', false);
+                        }
+
+                        else {
+                            $('body')
+                                .toast({
+                                    class: 'error',
+                                    title: 'Not Available',
+                                    message: '' + response.message,
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                            $('#saveBtn').prop('disabled', true);
+                        }
+                    },
+                    error: function () {
+                        $('body')
+                            .toast({
+                                class: 'error',
+                                title: 'Not Available',
+                                message: '' + response.message,
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+                });
+            }
+            else {
+                $('#errorMsg').html('');
+                $('#saveBtn').prop('disabled', true);
+            }
+
+        }
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+
+
+    </script>
+{% endblock %}

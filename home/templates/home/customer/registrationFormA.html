@@ -1,0 +1,1917 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% block title %}
+    <title>Registration Form A</title>
+{% endblock %}
+{% block body %}
+    <div class="ui text container">
+        <div class="ui inverted header"></div>
+        <h3>Form 'A'</h3>
+        <a>(See rule 3)</a>
+        <h4>Application for registration under the Manipur Nursing Homes and Clinics</h4>
+        <h4>Registration Act, 1992.(MNHCR Act, 1992)</h4>
+    </div>
+    <div class="ui container">
+        <div class="ui segment centered grid">
+            <form class="ui form" style="text-align: left" enctype="multipart/form-data" method="post"> {% csrf_token %}
+                <h4 class="ui dividing header" style="text-align: center">Applicant Form:</h4>
+                <div class="ui segment" style="background-color: beige">
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">1. Full Name Of The Applicant:</h5>
+                        <div class="field">
+                            <input type="text" name="fullNameApplicant" id="fullNameApplicant"
+                                   placeholder="Full Name Of The Applicant"
+                                   autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">2. Full residential address,Telephone number of the
+                            applicant</h5>
+                        <div class="three fields">
+                            <div class="field">
+                                <label>Full Residential Address:</label>
+                                <input type="text" name="addressApplicant" id="addressApplicant"
+                                       placeholder="Address Of The Applicant"
+                                       autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label>Telephone number of the applicant: </label>
+                                <input type="number" name="phoneNumberApplicant" id="phoneNumberApplicant"
+                                       placeholder="Phone Number Of The Applicant" autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label>Upload Rent affidavit from the land owner/Copy of Patta, if the applicant owns
+                                    the
+                                    land</label>
+                                <input type="file" placeholder="Upload" name="addressProofFile" id="addressProofFile">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">3. Professional or technical qualification:</h5>
+                        <div class="field">
+                            <textarea name="appicantQualificationTextField" id="appicantQualificationTextField"
+                                      placeholder="Professional or technical qualification (if any)" rows="3"
+                                      autocomplete="off"></textarea>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">4. Nationality of the applicant</h5>
+                        <div class="field">
+                            <input type="text" name="applicantNationality" id="applicantNationality"
+                                   placeholder="Nationality of the applicant"
+                                   autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">5. Full address with telephone number of the registered office or
+                            principal
+                            office of the
+                            society, association or company running the nursing home/clinic</h5>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Full Address</label>
+                                <input type="text" name="addressOfOffice" id="addressOfOffice"
+                                       placeholder="Full Address" autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label>Phone Number</label>
+                                <input type="number" name="phoneNoOfOffice" id="phoneNoOfOffice"
+                                       placeholder="Phone Number"
+                                       autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">6. Name and other particulars of the nursing home/clinic in
+                            respect
+                            of
+                            which
+                            the
+                            registration is applied for</h5>
+                        <div class="field">
+                            <textarea rows="3" type="text" name="nameAndOtherParticularRegisterFor"
+                                      id="nameAndOtherParticularRegisterFor"
+                                      placeholder=" Name and other particulars of the nursing home/clinic in respect of which the registration is applied for"
+                                      autocomplete="off">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">7. Full address where the nursing home/clinic is situated</h5>
+                        <div class="field">
+                            <textarea name="AddressWhereNursingSituated" id="AddressWhereNursingSituated"
+                                      placeholder="Full address where the nursing home/clinic is situated" rows="3"
+                                      autocomplete="off"></textarea>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">8. Type of nursing home</h5>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Select Category</label>
+                                <select class="ui selection dropdown" name="typeOfApplicationCategory" onchange="selectSub()"
+                                        id="typeOfApplicationCategory">
+                                    <option value="clinic" selected>Clinic</option>
+                                    <option value="nursing home">Nursing Home</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Select Sub-Category</label>
+                                <select class="ui selection dropdown" name="typeOfApplicationSubCategory"
+                                        id="typeOfApplicationSubCategory">
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="ui segment" id="extraClinicDetail">
+                            <h5 class="ui dividing header">I. Method of Bio-Medical Waste Disposal/Certificate from CBWTF</h5>
+                            <div class="field">
+                                <label>Upload Document</label>
+                                <input type="file" placeholder="Upload" name="methodOfBioMedicalWasteFile" id="methodOfBioMedicalWasteFile">
+                            </div>
+                            <h5 class="ui dividing header">II. MPCB Consent to operate/establish, Authorization certificate</h5>
+                            <div class="field">
+                                <label>Upload Document</label>
+                                <input type="file" placeholder="Upload" name="MPCBFile" id="MPCBFile">
+                            </div>
+                            <h5 class="ui dividing header">III. AERB Authorization for X-Ray, CT-Scan & MRI installation</h5>
+                            <div class="field">
+                                <label>Upload Document</label>
+                                <input type="file" placeholder="Upload" name="AERBFile" id="AERBFile">
+                            </div>
+                            <h5 class="ui dividing header">IV. (PC)PNDT certificate from FW dept. for USG installation</h5>
+                            <div class="field">
+                                <label>Upload Document</label>
+                                <input type="file" placeholder="Upload" name="PNDTFile" id="PNDTFile">
+                            </div>
+                            <h5 class="ui dividing header">V. EPF scheme application (>20 staffs)</h5>
+                            <div class="inline field">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" checked="checked" name="EPF"
+                                               value="no">
+                                        <label>NO</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="EPF" value="yes">
+                                        <label>YES</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="ui dividing header">VI. Issue a Certificate for Non-Forfeiture of Original Certificates of the staffs</h5>
+                            <div class="field">
+                                <label>Upload Document</label>
+                                <input type="file" placeholder="Upload" name="NonForfeitureFile" id="NonForfeitureFile">
+                            </div>
+                            <h5 class="ui dividing header">VII. Fire Safety System adopted including escape door, stairs, signage etc. No Objection Certificate from the Fire Service Dept.</h5>
+                            <div class="field">
+                                <label>Upload Document</label>
+                                <input type="file" placeholder="Upload" name="FireSafetySystemFile" id="FireSafetySystemFile">
+                            </div>
+                            <h5 class="ui dividing header">VIII. Operation Theatre</h5>
+                            <div class="inline field">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" checked="checked" name="operationTheatre"
+                                               value="no">
+                                        <label>NO</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="operationTheatre" value="yes">
+                                        <label>YES</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui segment">
+                                <div class="fields">
+                                    <div class="seven wide field">
+                                        <label>OUTLAY</label>
+                                        <input type="text" autocomplete="off" name="outlay" id="outlay">
+                                    </div>
+                                    <div class="six wide field">
+                                        <label>ZONES</label>
+                                        <input type="text" autocomplete="off" name="zones" id="zones">
+                                    </div>
+                                    <div class="three wide field">
+                                        <label>NUMBER</label>
+                                        <input type="number" autocomplete="off" name="number" id="number">
+                                    </div>
+                                </div>
+                                <div class="fields">
+                                    <div class="ten wide field">
+                                        <label>MAJOR/MINOR</label>
+                                        <input type="text" autocomplete="off" name="majorMinor" id="majorMinor">
+                                    </div>
+                                    <div class="six wide field">
+                                        <label>UPLOAD EQUIPMENTS LIST OF O.T</label>
+                                        <input type="file" placeholder="Upload" name="OTEquipmentFile" id="OTEquipmentFile">
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="ui dividing header">IX. Equipments list of other specialties</h5>
+                            <div class="field">
+                                <label>Upload Document</label>
+                                <input type="file" placeholder="Upload" name="specialtiesEquipmentFile" id="specialtiesEquipmentFile">
+                            </div>
+                            <h5 class="ui dividing header">X. Availability of emergency medicines</h5>
+                            <div class="inline field">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" checked="checked" name="emergencyMedicines"
+                                               value="no">
+                                        <label>NO</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="emergencyMedicines" value="yes">
+                                        <label>YES</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="ui dividing header">XI. Availability of round the clock chemist shop</h5>
+                            <div class="inline field">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" checked="checked" name="clockChemistShop"
+                                               value="no">
+                                        <label>NO</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="clockChemistShop" value="yes">
+                                        <label>YES</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="ui dividing header">XII. Professional Tax</h5>
+                            <div class="field">
+                                <label>Upload Document</label>
+                                <input type="file" placeholder="Upload" name="professionalTaxFile" id="professionalTaxFile">
+                            </div>
+                            <div class="ui segment">
+                                <div class="ui button" tabindex="0" onclick="CheckListOtherDetails()">Save</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">9. Whether any other business is or will be carried out in the
+                            same
+                            premises
+                            as
+                            that of the
+                            nursing home or the clinic.</h5>
+                        <div class="inline field">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" checked="checked" name="anyOtherBusinessInSameResidence"
+                                           value="no">
+                                    <label>NO</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="anyOtherBusinessInSameResidence" value="yes">
+                                    <label>YES</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment" id="NursingSegment">
+                        <h5 class="ui dividing header">10. A brief description of the accommodations available and the
+                            equipment
+                            and
+                            facilities
+                            provided for in nursing home or the clinic which, among others include the following :</h5>
+                        <div class="field">
+                            <label>I. Floor space of bed rooms provided for patients giving number of beds</label>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Floor space</label>
+                                    <input name="accommodationAvailableFloorSpace" id="accommodationAvailableFloorSpace"
+                                           placeholder="Floor space" type="text" autocomplete="off"></div>
+                                <div class="field">
+                                    <label>Bed Rooms</label>
+                                    <input name="accommodationAvailableNumberOfBed"
+                                           id="accommodationAvailableNumberOfBed" placeholder="Bed Rooms" type="text"
+                                           autocomplete="off"></div>
+                            </div>
+                            <label>II. Floor space and number of wash basins, toilet (separate, attached or
+                                common.)bathrooms, available for patients, staff, and visitors *.</label>
+                            <textarea name="accommodationAvailableToiletWash" id="accommodationAvailableToiletWash"
+                                      placeholder="Floor space and number of wash basins, toilet (separate, attached or common.)bathrooms, available for patients, staff, and visitors"
+                                      rows="2" autocomplete="off"></textarea>
+                            <label>III. Floor space available for storage of drugs, linen, furniture and food.</label>
+                            <textarea name="accommodationAvailableDrugsLinenFurniture"
+                                      id="accommodationAvailableDrugsLinenFurniture"
+                                      placeholder="Floor space available for storage of drugs, linen, furniture and food"
+                                      rows="2" autocomplete="off"></textarea>
+                            <label>IV. Arrangement for transportation of patients – stretcher/trolley with provision for
+                                ramps.</label>
+                            <textarea name="accommodationAvailableForTransportation"
+                                      id="accommodationAvailableForTransportation"
+                                      placeholder="Arrangement for transportation of patients – stretcher/trolley with provision for ramps"
+                                      rows="2" autocomplete="off"></textarea>
+                            <label>V. Floor space of kitchen, stall room, duty rooms, nursing station, day
+                                rooms,library,conference (hall).</label>
+                            <textarea name="accommodationAvailableForKitchenStall"
+                                      id="accommodationAvailableForKitchenStall"
+                                      placeholder="Floor space of kitchen, stall room, duty rooms, nursing station, day rooms,library,conference (hall)"
+                                      rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">11. No. of beds provided</h5>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>I. For maternity patients</label>
+                                <input type="number" placeholder="Enter Nos Of Beds" name="noOfBedForMaternity"
+                                       id="noOfBedForMaternity" autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label>II. For other patients</label>
+                                <input type="number" placeholder="Enter Nos Of Beds" name="noOfBedForPatient"
+                                       id="noOfBedForPatient" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">12. Place where the nursing staff is accommodated.</h5>
+                        <div class="field">
+                            <label>Address</label>
+                            <textarea placeholder="Address" rows="2" name="placeWhereTheNursingStaffAccommodated"
+                                      id="placeWhereTheNursingStaffAccommodated" autocomplete="off"></textarea>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">13. The number of hours in each week the staff referred to in
+                            <a>rule(14)</a> are or are to be
+                            required to work.
+                        </h5>
+                        <div class="field">
+                            <label>Hours</label>
+                            <input placeholder="Hours" type="number" autocomplete="off"
+                                   name="numberOfHoursInAWeekToWork" id="numberOfHoursInAWeekToWork">
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">14. The arrangement for supply of blood and blood products.</h5>
+                        <div class="inline field">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" checked="checked" name="arrangementForBlood" value="no">
+                                    <label>NO</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="arrangementForBlood" value="yes">
+                                    <label>YES</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">15. The arrangement made for provision of pathology, microbiology
+                            and
+                            radiology services.</h5>
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="arrangementForPathology" id="arrangementForPathology"
+                                   value="pathology Services">
+                            <label>pathology services</label>
+                        </div>
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="arrangementForMicrobiology" id="arrangementForMicrobiology"
+                                   value="microbiology Services">
+                            <label>microbiology services</label>
+                        </div>
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="arrangementForRadiology" id="arrangementForRadiology"
+                                   value="radiology Services">
+                            <label>radiology services</label>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">16. Fees (item wise) charged or to be charged to patients
+                            (enclose
+                            details).</h5>
+                        <div class="field">
+                            <label>Upload document</label>
+                            <input type="file" placeholder="Upload" name="feesFile" id="feesFile">
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">17. Any provision for free/non-paying beds and services for
+                            indigent/poor
+                            patients.</h5>
+                        <div class="inline field">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" checked="checked" name="provisionForPoor" value="no">
+                                    <label>NO</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="provisionForPoor" value="yes">
+                                    <label>YES</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">18. Whether the applicant has other nursing home or business
+                            elsewhere.</h5>
+                        <div class="inline field">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" checked="checked" name="otherBusinessOrNursingHome" value="no">
+                                    <label>NO</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="otherBusinessOrNursingHome" value="yes">
+                                    <label>YES</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">19. Provision for life saving & emergency drugs.</h5>
+                        <div class="inline field">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" checked="checked" name="provisionForLifeSavingAndEmergencyDrug"
+                                           value="no">
+                                    <label>NO</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="provisionForLifeSavingAndEmergencyDrug" value="yes">
+                                    <label>YES</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">20. Provision/Arrangement for handling emergency/accident
+                            patients.</h5>
+                        <div class="inline field">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" checked="checked" name="provisionForEmergency"
+                                           value="no">
+                                    <label>NO</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="provisionForEmergency" value="yes">
+                                    <label>YES</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">21. No. & Year of Registration</h5>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Registration Number</label>
+                                <input type="number" placeholder="Registration Number" name="registrationNumber"
+                                       id="registrationNumber" autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label>Registration Year</label>
+                                <input type="number" placeholder="Registration Year" name="registrationYear"
+                                       id="registrationYear" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui button" tabindex="0" onclick="applicantBasicDetails()">Save</div>
+                    </div>
+                </div>
+                 <div class="ui segment" style="background-color: beige">
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">22. Campus Details</h5>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>i. Parking space- Description</label>
+                                <textarea autocomplete="off" rows="3" placeholder="wirte parking space description" name="parkingSpace" id="parkingSpace"></textarea>
+                            </div>
+                            <div class="field">
+                                <label>ii. Building structure</label>
+                                <select class="ui selection dropdown" name="buildingStructure"
+                                        id="buildingStructure">
+                                    <option value="">Select structure</option>
+                                    <option value="pucca">pucca</option>
+                                    <option value="semi-pucca">semi-pucca</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>iii. Number of floor</label>
+                                <input type="number" autocomplete="off" name="noOfFloor" id="noOfFloor">
+                            </div>
+                            <div class="field">
+                                <label>iv. Schematic diagram of floor wise rooms with labeling</label>
+                                <select class="ui selection dropdown" name="schematicDiagram" id="schematicDiagram">
+                                    <option value="">Select</option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                                <input type="file" placeholder="Upload Diagram" name="schematicDiagramFile" id="schematicDiagramFile">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>v. Number of rooms used, area of rooms </label>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Number of rooms</label>
+                                    <input type="text" autocomplete="off" name="noOfRooms" id="noOfRooms">
+                                </div>
+                                <div class="field">
+                                    <label>Area of rooms</label>
+                                    <input type="text" autocomplete="off" name="areaOfRooms" id="areaOfRooms">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui button" tabindex="0" onclick="CampusDetails()">Save</div>
+                    </div>
+                </div>
+                <div class="ui segment" style="background-color: beige">
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">23. The full names, age, qualification, and experiences of
+                            persons
+                            employed in the
+                            management of the nursing home or the clinic and whether they are or will be resident
+                            in the nursing home or the clinic..
+                        </h5>
+
+                        <div class="ui segment">
+                            <div id='TextBoxesGroup22'>
+                                <div id="TextBoxDiv221">
+                                    <input type="hidden" id="emp1">
+                                    <div class="four fields">
+                                        <div class="field">
+                                            <label>Full Name Of Employee 1 :</label><input type='text' id='FEN1'
+                                                                                           name='FEN1'
+                                                                                           style="width: 100%"
+                                                                                           autocomplete="off">
+                                        </div>
+                                        <div class="field">
+                                            <label>Age For Employee 1 :</label><input type='number' id='AFE1'
+                                                                                      name='AFE1'
+                                                                                      style="width: 100%"
+                                                                                      autocomplete="off">
+                                        </div>
+                                        <div class="field">
+                                            <label>Qualification For Employee 1 :</label><input type="text" id='QFE1'
+                                                                                                name='QFE1'
+                                                                                                style="width: 100%"
+                                                                                                autocomplete="off">
+                                        </div>
+                                        <div class="field">
+                                            <label>Experience For Employee 1 :</label><input type="text" id='EFE1'
+                                                                                             name='EFE1'
+                                                                                             style="width: 100%"
+                                                                                             autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="four fields">
+                                        <div class="field">
+                                            <label>Qualification Certificate For Employee 1</label>
+                                            <input type="file" placeholder="Upload" id="UQCFE1" name='UQCFE1'>
+                                        </div>
+                                        <div class="field">
+                                            <label>Experience Certificate For Employee 1</label>
+                                            <input type="file" placeholder="Upload" id="UECFE1" name='UECFE1'>
+                                        </div>
+                                        <div class="field">
+                                            <label>Appointment Order Certificate For Employee 1</label>
+                                            <input type="file" placeholder="Upload" id="UAOCFE1" name="UAOCFE1">
+                                        </div>
+                                        <div class="field">
+                                            <label>Acceptance letter Certificate For Employee 1</label>
+                                            <input type="file" placeholder="Upload" id="UALCFE1" name="UALCFE1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui left icon input">
+                            <i class="plus icon"></i>
+                            <input type="button" value="SAVE AND ADD MORE" id="addButton22">
+                        </div>
+                        <div class="ui left icon input">
+                            <i class="minus icon"></i>
+                            <input type="button" value="Remove" id="removeButton22">
+                        </div>
+                    </div>
+                </div>
+                <div class="ui segment" style="background-color: beige">
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">24. The full names, age, qualification, and experiences of the
+                            members of
+                            the medical staff.</h5>
+
+                        <div class="ui segment">
+                            <div id='TextBoxesGroup23'>
+                                <div id="TextBoxDiv231">
+                                    <input type="hidden" id="empD1">
+                                    <div class="four fields">
+                                        <div class="field">
+                                            <label>Full Name Of The Medical Staff 1 :</label><input type='text'
+                                                                                                    id='FNOTMS1'
+                                                                                                    style="width: 100%"
+                                                                                                    autocomplete="off">
+                                        </div>
+                                        <div class="field">
+                                            <label>Age For The Medical Staff 1 :</label><input type='number' id='AFTMS1'
+                                                                                               style="width: 100%"
+                                                                                               autocomplete="off">
+                                        </div>
+                                        <div class="field">
+                                            <label>Qualification For The Medical Staff 1 :</label><input type="text"
+                                                                                                         id='QFTMS1'
+                                                                                                         style="width: 100%"
+                                                                                                         autocomplete="off">
+                                        </div>
+                                        <div class="field">
+                                            <label>Experience For The Medical Staff 1 :</label><input type="text"
+                                                                                                      id='EFTMS1'
+                                                                                                      style="width: 100%"
+                                                                                                      autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="five fields">
+                                        <div class="field">
+                                            <label>Qualification Certificate For The Medical Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UQCFTMS1">
+                                        </div>
+                                        <div class="field">
+                                            <label>Experience Certificate For The Medical Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UECFTMS1">
+                                        </div>
+                                        <div class="field">
+                                            <label>Appointment Order Certificate For The Medical Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UAOCFTMS1">
+                                        </div>
+                                        <div class="field">
+                                            <label>Acceptance letter Certificate For The Medical Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UALCFTMS1">
+                                        </div>
+                                        <div class="field">
+                                            <label>MMC File For The Medical Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UMMCFFTMS1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui left icon input">
+                            <i class="plus icon"></i>
+                            <input type="button" value="SAVE AND ADD MORE" id="addButton23">
+                        </div>
+                        <div class="ui left icon input">
+                            <i class="minus icon"></i>
+                            <input type="button" value="Remove" id="removeButton23">
+                        </div>
+                    </div>
+                </div>
+                <div class="ui segment" style="background-color: beige">
+                    <div class="ui segment">
+                        <h5 class="ui dividing header">25. The full names, age, qualifications, of the nursing and other
+                            technical, ancillary staff.</h5>
+
+                        <input type="hidden" id="sendJsonData24" name="sendJsonData24">
+                        <div class="ui segment">
+                            <div id='TextBoxesGroup24'>
+                                <input type="hidden" id="empN1">
+                                <div id="TextBoxDiv241">
+                                    <div class="four fields">
+                                        <div class="field">
+                                            <label>Staff Type 1 :</label><input type='text' id='ST1'
+                                                                                style="width: 100%"
+                                                                                autocomplete="off">
+                                        </div>
+                                        <div class="field">
+                                            <label>Full Name Of Staff 1 :</label><input type='text' id='FNOS1'
+                                                                                        style="width: 100%"
+                                                                                        autocomplete="off">
+                                        </div>
+                                        <div class="field">
+                                            <label>Age For Staff 1 :</label><input type='number' id='AFS1'
+                                                                                   style="width: 100%"
+                                                                                   autocomplete="off">
+                                        </div>
+                                        <div class="field">
+                                            <label>Qualification For Staff 1 :</label><input type="text" id='QFS1'
+                                                                                             style="width: 100%"
+                                                                                             autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="five fields">
+                                        <div class="field">
+                                            <label>Qualification Certificate For The Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UQCFTS1">
+                                        </div>
+                                        <div class="field">
+                                            <label>Experience Certificate For The Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UECFTS1">
+                                        </div>
+                                        <div class="field">
+                                            <label>Appointment Order Certificate For The Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UAOCFTS1">
+                                        </div>
+                                        <div class="field">
+                                            <label>Acceptance letter Certificate For The Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UALCFTS1">
+                                        </div>
+                                        <div class="field">
+                                            <label>MMC File For The Staff 1</label>
+                                            <input type="file" placeholder="Upload" id="UMMCFFTS1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui left icon input">
+                            <i class="plus icon"></i>
+                            <input type="button" value="SAVE AND ADD MORE" id="addButton24">
+                        </div>
+                        <div class="ui left icon input">
+                            <i class="minus icon"></i>
+                            <input type="button" value="Remove" id="removeButton24">
+                        </div>
+                    </div>
+                </div>
+                <div class="ui segment" style="background-color: beige">
+                    <div class="ui segment">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="example" id="agree">
+                            <label>I do hereby solemnly declare that the above the above statements are true to the
+                                best of my knowledge and belied.
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ui segment" style="background-color: beige">
+                    <button onclick="submitForApproval()" class="ui button" tabindex="0" type="button" disabled id="submitData"  >Submit Details</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    function submitForApproval() {
+        var form_data = new FormData();
+            $.ajax({
+                type: 'post',
+                url: '{% url "homeApp:RequestForApplicantApprovalApiView" %}',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.message === 'success') {
+                        $('body')
+                            .toast({
+                                class: 'success',
+                                title: 'Applicant detail submitted Successfully.',
+                                message: 'Success.',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+                    else if (response.message === 'error') {
+                        $('body')
+                            .toast({
+                                class: 'error',
+                                title: 'Error',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'grey',
+                                position: 'top center',
+
+                            });
+
+                    }
+                    else {
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                title: 'Something Went Wrong.',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+
+                },
+                error: function (e) {
+
+                    console.log(e);
+                }
+            });
+
+    }
+
+        var counter1 = 2;
+        var counter2 = 2;
+        var counter3 = 2;
+        $('.ui.dropdown').dropdown();
+        $('#inverted_calendar')
+            .calendar({
+                type: 'date',
+                formatter: {
+                    date: function (date, settings) {
+                        if (!date) return '';
+                        var day = date.getDate();
+                        var month = date.getMonth() + 1;
+                        var year = date.getFullYear();
+                        return day + '/' + month + '/' + year;
+                    }
+                }
+            });
+        $(document).ready(function () {
+            $("#addButton22").click(function () {
+                if (counter1 > 50) {
+                    var x = "Only 50 Specification allow";
+                    variantAlertTost(x);
+                    return false;
+                }
+
+                if (counter1 < 50) {
+                    var myVal = (counter1 - 1).toString();
+                    var name = $('#FEN' + myVal).val();
+                    var age = $('#AFE' + myVal).val();
+                    var qualification = $('#QFE' + myVal).val();
+                    var experience = $('#EFE' + myVal).val();
+                    var qualificationCert = document.getElementById("UQCFE" + myVal).files[0];
+                    var experienceCert = document.getElementById("UECFE" + myVal).files[0];
+                    var appointmentCert = document.getElementById("UAOCFE" + myVal).files[0];
+                    var acceptanceCert = document.getElementById("UALCFE" + myVal).files[0];
+                    if (name === '' || qualification === '' || age === '' || experience === '' || qualificationCert === undefined || experienceCert === undefined || acceptanceCert === undefined || appointmentCert === undefined) {
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                title: 'Fields Requires',
+                                message: 'All fields are required',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            })
+                        ;
+                    }
+                    else {
+
+                        var form_data = new FormData();
+
+                        form_data.append('name', name);
+                        form_data.append('age', age);
+                        form_data.append('qualification', qualification);
+                        form_data.append('experience', experience);
+                        form_data.append('appointmentCert', appointmentCert);
+                        form_data.append('qualificationCert', qualificationCert);
+                        form_data.append('experienceCert', experienceCert);
+                        form_data.append('acceptanceCert', acceptanceCert);
+
+                        $.ajax({
+                            type: 'post',
+                            url: '{% url "homeApp:ApplicantPersonEmployeeApiView" %}',
+                            data: form_data,
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            success: function (response) {
+                                if (response.message === 'success') {
+                                    $('body')
+                                        .toast({
+                                            class: 'success',
+                                            title: 'Applicant Employee detail Upload Successfully.',
+                                            message: 'Upload Next .',
+                                            showProgress: 'bottom',
+                                            classProgress: 'red',
+                                            position: 'top center',
+
+                                        });
+                                    $('#emp' + myVal).val(response.id);
+                                    $('#CheckApplicantPersonEmployed').val(counter1 - 1);
+                                    var newTextBoxDiv = $(document.createElement('div')).attr("id", 'TextBoxDiv22' + counter1);
+
+                                    newTextBoxDiv.after().html('<div class="four fields">' + '<div class="field">' +
+                                        '<label>Full Name Of Employee ' + counter1 + ' : </label>' +
+                                        '<input type="hidden" id="emp' + counter1 + '">' +
+                                        '<input type="text" name="FEN' + counter1 + '" id="FEN' + counter1 + '" value="" style="width: 100%" autocomplete="off" ></div>' +
+                                        '<div class="field"><label>Age For Employee' + counter1 + ' : </label>' +
+                                        '<input type="number" name="AFE' + counter1 + '" id="AFE' + counter1 + '" value="" style="width: 100%" autocomplete="off" ></div>' +
+                                        '<div class="field"><label>Qualification For Employee' + counter1 + ' : </label>' +
+                                        '<input type="text" name="QFE' + counter1 + '" id="QFE' + counter1 + '" value="" style="width: 100%" autocomplete="off"></div>' +
+                                        '<div class="field"><label>Experience For Employee' + counter1 + ' : </label>' +
+                                        '<input type="text" name="EFE' + counter1 + '" id="EFE' + counter1 + '" value="" style="width: 100%" autocomplete="off"></div></div>' +
+                                        '<div class="four fields">' + '<div class="field">' +
+                                        '<label>Qualification Certificate For Employee ' + counter1 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UQCFE' + counter1 + '" id="UQCFE' + counter1 + '" ></div>' +
+                                        '<div class="field"><label>Experience Certificate For Employee' + counter1 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UECFE' + counter1 + '" id="UECFE' + counter1 + '"></div>' +
+                                        '<div class="field"><label>Appointment Order Certificate For Employee' + counter1 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UAOCFE' + counter1 + '" id="UAOCFE' + counter1 + '" ></div>' +
+                                        '<div class="field"><label>Acceptance letter Certificate For Employee' + counter1 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UALCFE' + counter1 + '" id="UALCFE' + counter1 + '" ></div>' +
+                                        '</div>'
+                                    );
+                                    newTextBoxDiv.appendTo("#TextBoxesGroup22");
+                                    counter1++;
+                                }
+                                else if (response.message === 'error') {
+                                    $('body')
+                                        .toast({
+                                            class: 'error',
+                                            title: 'Error',
+                                            message: 'Please try again.',
+                                            showProgress: 'bottom',
+                                            classProgress: 'grey',
+                                            position: 'top center',
+
+                                        });
+
+                                }
+                                else {
+                                    $('body')
+                                        .toast({
+                                            class: 'warning',
+                                            title: 'Something Went Wrong.',
+                                            message: 'Please try again.',
+                                            showProgress: 'bottom',
+                                            classProgress: 'red',
+                                            position: 'top center',
+
+                                        });
+                                }
+
+                            },
+                            error: function (e) {
+
+                                console.log(e);
+                            }
+                        });
+
+
+                    }
+
+
+                }
+
+            });
+            $("#removeButton22").click(function () {
+                if (counter1 == 2) {
+                    var z = "Atleast one specification must be added";
+                    variantAlertTost(z);
+                    return false;
+                }
+                else {
+
+                    var myIDVal = (counter1 - 1).toString();
+                    var myID = $('#emp' + myIDVal).val();
+                    if (myID === '') {
+                        counter1--;
+                        $("#TextBoxDiv22" + counter1).remove();
+                        $('#CheckApplicantPersonEmployed').val(counter1 - 1);
+                    }
+                    else {
+                        deleteEmp(myID);
+                        counter1--;
+                        $("#TextBoxDiv22" + counter1).remove();
+                        $('#CheckApplicantPersonEmployed').val(counter1 - 1);
+                    }
+                }
+
+            });
+
+            $("#addButton23").click(function () {
+
+                if (counter2 > 50) {
+                    var x = "Only 50 Specification allow";
+                    variantAlertTost(x);
+                    return false;
+                }
+                if (counter2 < 50) {
+                    var myVal = (counter2 - 1).toString();
+                    var name = $('#FNOTMS' + myVal).val();
+                    var age = $('#AFTMS' + myVal).val();
+                    var qualification = $('#QFTMS' + myVal).val();
+                    var experience = $('#EFTMS' + myVal).val();
+                    var qualificationCert = document.getElementById("UQCFTMS" + myVal).files[0];
+                    var experienceCert = document.getElementById("UECFTMS" + myVal).files[0];
+                    var appointmentCert = document.getElementById("UAOCFTMS" + myVal).files[0];
+                    var acceptanceCert = document.getElementById("UALCFTMS" + myVal).files[0];
+                    var mmcCert = document.getElementById("UMMCFFTMS" + myVal).files[0];
+                    if (name === '' || qualification === '' || age === '' || experience === '' || qualificationCert === undefined || experienceCert === undefined || acceptanceCert === undefined || appointmentCert === undefined || mmcCert === undefined) {
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                title: 'Fields Requires',
+                                message: 'All fields are required',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            })
+                        ;
+                    }
+                    else {
+
+                        var form_data = new FormData();
+
+                        form_data.append('name', name);
+                        form_data.append('age', age);
+                        form_data.append('qualification', qualification);
+                        form_data.append('experience', experience);
+                        form_data.append('appointmentCert', appointmentCert);
+                        form_data.append('qualificationCert', qualificationCert);
+                        form_data.append('experienceCert', experienceCert);
+                        form_data.append('acceptanceCert', acceptanceCert);
+                        form_data.append('mmcCert', mmcCert);
+                        $.ajax({
+                            type: 'post',
+                            url: '{% url "homeApp:ApplicantDoctorStaffApiView" %}',
+                            data: form_data,
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            success: function (response) {
+                                if (response.message === 'success') {
+                                    $('body')
+                                        .toast({
+                                            class: 'success',
+                                            title: 'Doctor detail Uploaded Successfully.',
+                                            message: 'Upload Next .',
+                                            showProgress: 'bottom',
+                                            classProgress: 'red',
+                                            position: 'top center',
+
+                                        });
+                                    $('#empD' + myVal).val(response.id);
+                                    var newTextBoxDiv = $(document.createElement('div')).attr("id", 'TextBoxDiv23' + counter2);
+
+                                    newTextBoxDiv.after().html('<div class="four fields">' + '<div class="field">' +
+                                        '<label>Full Name Of Of The Medical Staff ' + counter2 + ' : </label>' +
+                                        '<input type="hidden" id="empD' + counter2 + '">' +
+                                        '<input type="text" name="FNOTMS' + counter2 + '" id="FNOTMS' + counter2 + '" value="" style="width: 100%" autocomplete="off" ></div>' +
+                                        '<div class="field"><label>Age For The Medical Staff' + counter2 + ' : </label>' +
+                                        '<input type="number" name="AFTMS' + counter2 + '" id="AFTMS' + counter2 + '" value="" style="width: 100%" autocomplete="off" ></div>' +
+                                        '<div class="field"><label>Qualification For The Medical Staff' + counter2 + ' : </label>' +
+                                        '<input type="text" name="QFTMS' + counter2 + '" id="QFTMS' + counter2 + '" value="" style="width: 100%" autocomplete="off"></div>' +
+                                        '<div class="field"><label>Experience For The Medical Staff' + counter2 + ' : </label>' +
+                                        '<input type="text" name="EFTMS' + counter2 + '" id="EFTMS' + counter2 + '" value="" style="width: 100%" autocomplete="off"></div></div>' +
+                                        '<div class="five fields">' + '<div class="field">' +
+                                        '<label>Qualification Certificate For The Medical Staff ' + counter2 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UQCFTMS' + counter2 + '" id="UQCFTMS' + counter2 + '" ></div>' +
+                                        '<div class="field"><label>Experience Certificate For The Medical Staff' + counter2 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UECFTMS' + counter2 + '" id="UECFTMS' + counter2 + '"></div>' +
+                                        '<div class="field"><label>Appointment Order Certificate For The Medical Staff' + counter2 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UAOCFTMS' + counter2 + '" id="UAOCFTMS' + counter2 + '" ></div>' +
+                                        '<div class="field"><label>Acceptance letter Certificate For The Medical Staff' + counter2 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UALCFTMS' + counter2 + '" id="UALCFTMS' + counter2 + '" ></div>' +
+                                        '<div class="field"><label>MMC File For The Medical Staff' + counter2 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UMMCFFTMS' + counter2 + '" id="UMMCFFTMS' + counter2 + '" ></div>' +
+                                        '</div>'
+                                    );
+                                    newTextBoxDiv.appendTo("#TextBoxesGroup23");
+                                    counter2++;
+                                }
+                                else if (response.message === 'error') {
+                                    $('body')
+                                        .toast({
+                                            class: 'error',
+                                            title: 'Error',
+                                            message: 'Please try again.',
+                                            showProgress: 'bottom',
+                                            classProgress: 'grey',
+                                            position: 'top center',
+
+                                        });
+
+                                }
+                                else {
+                                    $('body')
+                                        .toast({
+                                            class: 'warning',
+                                            title: 'Something Went Wrong.',
+                                            message: 'Please try again.',
+                                            showProgress: 'bottom',
+                                            classProgress: 'red',
+                                            position: 'top center',
+
+                                        });
+                                }
+
+                            },
+                            error: function (e) {
+
+                                console.log(e);
+                            }
+                        });
+
+
+                    }
+
+
+                }
+
+
+            });
+            $("#removeButton23").click(function () {
+                if (counter2 == 2) {
+                    var z = "Atleast one specification must be added";
+                    variantAlertTost(z);
+                    return false;
+                }
+
+                else {
+
+                    var myIDVal = (counter2 - 1).toString();
+                    var myID = $('#empD' + myIDVal).val();
+                    if (myID === '') {
+
+                        counter2--;
+                        $("#TextBoxDiv23" + counter2).remove();
+                    }
+                    else {
+                        deleteDoc(myID);
+                        counter2--;
+                        $("#TextBoxDiv23" + counter2).remove();
+                    }
+                }
+
+            });
+
+            $("#addButton24").click(function () {
+
+                if (counter3 > 50) {
+                    var x = "Only 50 Specification allow";
+                    variantAlertTost(x);
+                    return false;
+                }
+                if (counter3 < 50) {
+                    var myVal = (counter3 - 1).toString();
+                    var name = $('#ST' + myVal).val();
+                    var age = $('#FNOS' + myVal).val();
+                    var qualification = $('#AFS' + myVal).val();
+                    var experience = $('#QFS' + myVal).val();
+                    var qualificationCert = document.getElementById("UQCFTS" + myVal).files[0];
+                    var experienceCert = document.getElementById("UECFTS" + myVal).files[0];
+                    var appointmentCert = document.getElementById("UAOCFTS" + myVal).files[0];
+                    var acceptanceCert = document.getElementById("UALCFTS" + myVal).files[0];
+                    var mmcCert = document.getElementById("UMMCFFTS" + myVal).files[0];
+                    if (name === '' || qualification === '' || age === '' || experience === '' || qualificationCert === undefined || experienceCert === undefined || acceptanceCert === undefined || appointmentCert === undefined || mmcCert === undefined) {
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                title: 'Fields Requires',
+                                message: 'All fields are required',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            })
+                        ;
+                    }
+                    else {
+
+                        var form_data = new FormData();
+
+                        form_data.append('name', name);
+                        form_data.append('age', age);
+                        form_data.append('qualification', qualification);
+                        form_data.append('experience', experience);
+                        form_data.append('appointmentCert', appointmentCert);
+                        form_data.append('qualificationCert', qualificationCert);
+                        form_data.append('experienceCert', experienceCert);
+                        form_data.append('acceptanceCert', acceptanceCert);
+                        form_data.append('mmcCert', mmcCert);
+                        $.ajax({
+                            type: 'post',
+                            url: '{% url "homeApp:ApplicantNurseStaffApiView" %}',
+                            data: form_data,
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            success: function (response) {
+                                if (response.message === 'success') {
+                                    $('body')
+                                        .toast({
+                                            class: 'success',
+                                            title: 'Nurse detail Uploaded Successfully.',
+                                            message: 'Upload Next .',
+                                            showProgress: 'bottom',
+                                            classProgress: 'red',
+                                            position: 'top center',
+
+                                        });
+                                    $('#empN' + myVal).val(response.id);
+                                    var newTextBoxDiv = $(document.createElement('div')).attr("id", 'TextBoxDiv24' + counter3);
+
+                                    newTextBoxDiv.after().html('<div class="four fields">' +
+                                        '<div class="field"><label>Staff Type' + counter3 + '</label>' +
+                                        '<input type="hidden" id="empN' + counter3 + '">' +
+                                        '<input type="text" name="ST' + counter3 + '" id="ST' + counter3 + '" value="" style="width: 100%" autocomplete="off"></div>' +
+                                        '<div class="field">' +
+                                        '<label>Full Name Of Staff ' + counter3 + ' : </label>' +
+                                        '<input type="text" name="FNOS' + counter3 + '" id="FNOS' + counter3 + '" value="" style="width: 100%" autocomplete="off" ></div>' +
+                                        '<div class="field"><label>Age For Staff' + counter3 + ' : </label>' +
+                                        '<input type="number" name="AFS' + counter3 + '" id="AFS' + counter3 + '" value="" style="width: 100%" autocomplete="off" ></div>' +
+                                        '<div class="field"><label>Qualification For Staff' + counter3 + ' : </label>' +
+                                        '<input type="text" name="QFS' + counter3 + '" id="QFS' + counter3 + '" value="" style="width: 100%" autocomplete="off"></div></div>' +
+                                        '<div class="five fields">' + '<div class="field">' +
+                                        '<label>Qualification Certificate For The Staff ' + counter3 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UQCFTS' + counter3 + '" id="UQCFTS' + counter3 + '" ></div>' +
+                                        '<div class="field"><label>Experience Certificate For The Staff' + counter3 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UECFTS' + counter3 + '" id="UECFTS' + counter3 + '"></div>' +
+                                        '<div class="field"><label>Appointment Order Certificate For The Staff' + counter3 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UAOCFTS' + counter3 + '" id="UAOCFTS' + counter3 + '" ></div>' +
+                                        '<div class="field"><label>Acceptance letter Certificate For The Staff' + counter3 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UALCFTS' + counter3 + '" id="UALCFTS' + counter3 + '" ></div>' +
+                                        '<div class="field"><label>MMC File For The Staff' + counter3 + '</label>' +
+                                        '<input type="file" placeholder="Upload" name="UMMCFFTS' + counter3 + '" id="UMMCFFTS' + counter3 + '" ></div>' +
+                                        '</div>'
+                                    );
+                                    newTextBoxDiv.appendTo("#TextBoxesGroup24");
+                                    counter3++;
+                                }
+                                else if (response.message === 'error') {
+                                    $('body')
+                                        .toast({
+                                            class: 'error',
+                                            title: 'Error',
+                                            message: 'Please try again.',
+                                            showProgress: 'bottom',
+                                            classProgress: 'grey',
+                                            position: 'top center',
+
+                                        });
+
+                                }
+                                else {
+                                    $('body')
+                                        .toast({
+                                            class: 'warning',
+                                            title: 'Something Went Wrong.',
+                                            message: 'Please try again.',
+                                            showProgress: 'bottom',
+                                            classProgress: 'red',
+                                            position: 'top center',
+
+                                        });
+                                }
+
+                            },
+                            error: function (e) {
+
+                                console.log(e);
+                            }
+                        });
+
+
+                    }
+
+
+                }
+
+
+            });
+            $("#removeButton24").click(function () {
+                debugger;
+                if (counter3 == 2) {
+                    var z = "Atleast one specification must be added";
+                    variantAlertTost(z);
+                    return false;
+                }
+                else {
+
+                    var myIDVal = (counter3 - 1).toString();
+                    var myID = $('#empN' + myIDVal).val();
+                    if (myID === '') {
+
+                        counter3--;
+                        $("#TextBoxDiv24" + counter3).remove();
+
+                    }
+                    else {
+                        deleteNur(myID);
+                        counter3--;
+                        $("#TextBoxDiv24" + counter3).remove();
+
+                    }
+                }
+
+            });
+        });
+
+        function applicantBasicDetails() {
+            var fullNameApplicant = $('#fullNameApplicant').val();
+            var addressApplicant = $('#addressApplicant').val();
+            var phoneNumberApplicant = $('#phoneNumberApplicant').val();
+            var addressProofFile = document.getElementById("addressProofFile").files[0];
+            var appicantQualificationTextField = $('#appicantQualificationTextField').val();
+            var applicantNationality = $('#applicantNationality').val();
+            var addressOfOffice = $('#addressOfOffice').val();
+            var phoneNoOfOffice = $('#phoneNoOfOffice').val();
+            var nameAndOtherParticularRegisterFor = $('#nameAndOtherParticularRegisterFor').val();
+            var AddressWhereNursingSituated = $('#AddressWhereNursingSituated').val();
+            var typeOfApplicationCategory = $('#typeOfApplicationCategory').val();
+            var typeOfApplicationSubCategory = $('#typeOfApplicationSubCategory').val();
+            var anyOtherBusinessInSameResidence = document.querySelector('input[name="anyOtherBusinessInSameResidence"]:checked').value;
+            var accommodationAvailableFloorSpace = $('#accommodationAvailableFloorSpace').val();
+            var accommodationAvailableNumberOfBed = $('#accommodationAvailableNumberOfBed').val();
+            var accommodationAvailableToiletWash = $('#accommodationAvailableToiletWash').val();
+            var accommodationAvailableDrugsLinenFurniture = $('#accommodationAvailableDrugsLinenFurniture').val();
+            var accommodationAvailableForTransportation = $('#accommodationAvailableForTransportation').val();
+            var accommodationAvailableForKitchenStall = $('#accommodationAvailableForKitchenStall').val();
+            var noOfBedForMaternity = $('#noOfBedForMaternity').val();
+            var noOfBedForPatient = $('#noOfBedForPatient').val();
+            var placeWhereTheNursingStaffAccommodated = $('#placeWhereTheNursingStaffAccommodated').val();
+            var numberOfHoursInAWeekToWork = $('#numberOfHoursInAWeekToWork').val();
+            var arrangementForBlood = document.querySelector('input[name="arrangementForBlood"]:checked').value;
+            var arrangementForPathology = $('#arrangementForPathology').val();
+            var arrangementForMicrobiology = $('#arrangementForMicrobiology').val();
+            var arrangementForRadiology = $('#arrangementForRadiology').val();
+            var feesFile = document.getElementById("feesFile").files[0];
+            var provisionForPoor = document.querySelector('input[name="provisionForPoor"]:checked').value;
+            var otherBusinessOrNursingHome = document.querySelector('input[name="otherBusinessOrNursingHome"]:checked').value;
+            var provisionForLifeSavingAndEmergencyDrug = document.querySelector('input[name="provisionForLifeSavingAndEmergencyDrug"]:checked').value;
+            var provisionForEmergency = document.querySelector('input[name="provisionForEmergency"]:checked').value;
+            var registrationNumber = $('#registrationNumber').val();
+            var registrationYear = $('#registrationYear').val();
+            if (fullNameApplicant !== '' && addressApplicant !== '' && phoneNumberApplicant !== '' &&
+                addressProofFile !== undefined && appicantQualificationTextField !== '' && applicantNationality !== '' &&
+                addressOfOffice !== '' && phoneNoOfOffice !== '' && nameAndOtherParticularRegisterFor !== '' &&
+                AddressWhereNursingSituated !== '' && typeOfApplicationCategory !== '' && typeOfApplicationSubCategory !== '' &&
+                accommodationAvailableNumberOfBed !== '' && accommodationAvailableToiletWash !== '' && accommodationAvailableDrugsLinenFurniture !== '' &&
+                accommodationAvailableForTransportation !== '' && accommodationAvailableForKitchenStall !== '' && noOfBedForMaternity !== '' &&
+                noOfBedForPatient !== '' && placeWhereTheNursingStaffAccommodated !== '' && numberOfHoursInAWeekToWork !== '' && feesFile !== undefined && registrationNumber !== '' && registrationYear !== ''
+            ) {
+                var form_data = new FormData();
+                form_data.append('fullNameApplicant', fullNameApplicant);
+                form_data.append('addressApplicant', addressApplicant);
+                form_data.append('phoneNumberApplicant', phoneNumberApplicant);
+                form_data.append('addressProofFile', addressProofFile);
+                form_data.append('appicantQualificationTextField', appicantQualificationTextField);
+                form_data.append('applicantNationality', applicantNationality);
+                form_data.append('addressOfOffice', addressOfOffice);
+                form_data.append('phoneNoOfOffice', phoneNoOfOffice);
+                form_data.append('nameAndOtherParticularRegisterFor', nameAndOtherParticularRegisterFor);
+                form_data.append('AddressWhereNursingSituated', AddressWhereNursingSituated);
+                form_data.append('typeOfApplicationCategory', typeOfApplicationCategory);
+                form_data.append('typeOfApplicationSubCategory', typeOfApplicationSubCategory);
+                form_data.append('anyOtherBusinessInSameResidence', anyOtherBusinessInSameResidence);
+                form_data.append('accommodationAvailableFloorSpace', accommodationAvailableFloorSpace);
+                form_data.append('accommodationAvailableNumberOfBed', accommodationAvailableNumberOfBed);
+                form_data.append('accommodationAvailableToiletWash', accommodationAvailableToiletWash);
+                form_data.append('accommodationAvailableDrugsLinenFurniture', accommodationAvailableDrugsLinenFurniture);
+                form_data.append('accommodationAvailableForTransportation', accommodationAvailableForTransportation);
+                form_data.append('accommodationAvailableForKitchenStall', accommodationAvailableForKitchenStall);
+                form_data.append('noOfBedForMaternity', noOfBedForMaternity);
+                form_data.append('noOfBedForPatient', noOfBedForPatient);
+                form_data.append('placeWhereTheNursingStaffAccommodated', placeWhereTheNursingStaffAccommodated);
+                form_data.append('numberOfHoursInAWeekToWork', numberOfHoursInAWeekToWork);
+                form_data.append('arrangementForBlood', arrangementForBlood);
+                form_data.append('arrangementForPathology', arrangementForPathology);
+                form_data.append('arrangementForMicrobiology', arrangementForMicrobiology);
+                form_data.append('arrangementForRadiology', arrangementForRadiology);
+                form_data.append('feesFile', feesFile);
+                form_data.append('provisionForPoor', provisionForPoor);
+                form_data.append('otherBusinessOrNursingHome', otherBusinessOrNursingHome);
+                form_data.append('provisionForLifeSavingAndEmergencyDrug', provisionForLifeSavingAndEmergencyDrug);
+                form_data.append('provisionForEmergency', provisionForEmergency);
+                form_data.append('registrationNumber', registrationNumber);
+                form_data.append('registrationYear', registrationYear);
+
+                $.ajax({
+                    type: 'post',
+                    url: '{% url "home:ApplicantBasicApiView" %}',
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.message === 'success') {
+                            $('body')
+                                .toast({
+                                    class: 'success',
+                                    title: 'Applicant Basic Details Upload Successfully.',
+                                    message: 'Upload Next .',
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                        }
+                        else if (response.message === 'error') {
+                            $('body')
+                                .toast({
+                                    class: 'error',
+                                    title: 'Error',
+                                    message: 'Please try again.',
+                                    showProgress: 'bottom',
+                                    classProgress: 'grey',
+                                    position: 'top center',
+
+                                });
+
+                        }
+                        else {
+                            $('body')
+                                .toast({
+                                    class: 'warning',
+                                    title: 'Something Went Wrong.',
+                                    message: 'Please try again.',
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                        }
+
+                    },
+                    error: function (e) {
+
+                        console.log(e);
+                    }
+                });
+            }
+            else {
+                $('body')
+                    .toast({
+                        class: 'warning',
+                        title: 'Fields Requires',
+                        message: 'All fields are required',
+                        showProgress: 'bottom',
+                        classProgress: 'red',
+                        position: 'top center',
+
+                    })
+                ;
+            }
+        }
+
+        function variantAlertTost(x) {
+            $('body')
+                .toast({
+                    class: 'error',
+                    message: x
+                })
+            ;
+        }
+
+
+        function deleteEmp(id) {
+            var form_data = new FormData();
+            form_data.append('id', id);
+            $.ajax({
+                type: 'post',
+                url: '{% url "homeApp:DeleteApplicantPersonEmployeeApiView" %}',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.message === 'success') {
+                        $('body')
+                            .toast({
+                                class: 'success',
+                                title: 'Applicant Basic Details deleted Successfully.',
+                                message: 'Upload Next .',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+                    else if (response.message === 'error') {
+                        $('body')
+                            .toast({
+                                class: 'error',
+                                title: 'Error',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'grey',
+                                position: 'top center',
+
+                            });
+
+                    }
+                    else {
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                title: 'Something Went Wrong.',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+
+                },
+                error: function (e) {
+
+                    console.log(e);
+                }
+            });
+
+
+        }
+
+        function deleteDoc(id) {
+            var form_data = new FormData();
+            form_data.append('id', id);
+            $.ajax({
+                type: 'post',
+                url: '{% url "homeApp:DeleteApplicantDoctorApiView" %}',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.message === 'success') {
+                        $('body')
+                            .toast({
+                                class: 'success',
+                                title: 'Doctor Details deleted Successfully.',
+                                message: 'Upload Next .',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+                    else if (response.message === 'error') {
+                        $('body')
+                            .toast({
+                                class: 'error',
+                                title: 'Error',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'grey',
+                                position: 'top center',
+
+                            });
+
+                    }
+                    else {
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                title: 'Something Went Wrong.',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+
+                },
+                error: function (e) {
+
+                    console.log(e);
+                }
+            });
+
+
+        }
+
+        function deleteNur(id) {
+            var form_data = new FormData();
+            form_data.append('id', id);
+            $.ajax({
+                type: 'post',
+                url: '{% url "homeApp:DeleteApplicantNurseApiView" %}',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.message === 'success') {
+                        $('body')
+                            .toast({
+                                class: 'success',
+                                title: 'Nurse Details deleted Successfully.',
+                                message: 'Upload Next .',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+                    else if (response.message === 'error') {
+                        $('body')
+                            .toast({
+                                class: 'error',
+                                title: 'Error',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'grey',
+                                position: 'top center',
+
+                            });
+
+                    }
+                    else {
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                title: 'Something Went Wrong.',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+
+                },
+                error: function (e) {
+
+                    console.log(e);
+                }
+            });
+
+
+        }
+        $(selectSub());
+function selectSub() {
+            var cat = $('#typeOfApplicationCategory').val();
+            if(cat ==='clinic'){
+                $('#extraClinicDetail').css('display','block');
+                $('#typeOfApplicationSubCategory').html('').append('<option value="maternity homes">Maternity Homes</option>'+
+                                    '<option value="private hospitals">Private Hospitals</option>'+
+                                    '<option value="de-addiction center">De-addiction Centre</option>');
+
+            }
+            else{
+                 $('#extraClinicDetail').css('display','none');
+                $('#typeOfApplicationSubCategory').html('').append(' <option value="day care clinic">Day Care Clinic</option>'+
+                                    '<option value="x-ray clinic">X-ray Clinic</option>'+
+                                   ' <option value="ecg clinic">ECG Clinic</option>'+
+                                    '<option value="ultrasound clinic">Ultrasound Clinic</option>'+
+                                    '<option value="c.t. scan clinic">C.T.Scan Clinic</option>'+
+                                    '<option value="pathological laboratory clinic">Pathological Laboratory Clinic'+
+                                    '</option>'+
+                                    '<option value="routine investigation laboratory">Routine Investigation Laboratory'+
+                                    '</option>'+
+                                   ' <option value="denture manufacturing clinic">Denture manufacturing Clinic</option>'+
+                                   ' <option value="artificial limb manufacturing clinic">Artificial limb manufacturing Clinic </option> <option value="optical centre/clinic">Optical Centre/Clinic</option>'+
+                                   ' <option value="dental clinic">Dental Clinic</option>'+
+                                    '<option value="physiotherapy clinic">Physiotherapy Clinic</option>'+
+                                    '<option value="homeopathy clinic">Homeopathy Clinic</option>'+
+                                    '<option value="yoga and naturopathy clinic">Yoga and Naturopathy Clinic</option>');
+            }
+
+
+}
+
+{#        update#}
+        function CheckListOtherDetails() {
+            var methodOfBioMedicalWasteFile = document.getElementById("methodOfBioMedicalWasteFile").files[0];
+            var MPCBFile = document.getElementById("MPCBFile").files[0];
+            var AERBFile = document.getElementById("AERBFile").files[0];
+            var PNDTFile = document.getElementById("PNDTFile").files[0];
+            var EPF = document.querySelector('input[name="EPF"]:checked').value;
+            var NonForfeitureFile = document.getElementById("NonForfeitureFile").files[0];
+            var FireSafetySystemFile = document.getElementById("FireSafetySystemFile").files[0];
+            var operationTheatre = document.querySelector('input[name="operationTheatre"]:checked').value;
+            var outlay = $('#outlay').val();
+            var zones = $('#zones').val();
+            var number = $('#number').val();
+            var majorMinor = $('#majorMinor').val();
+            var OTEquipmentFile = document.getElementById("OTEquipmentFile").files[0];
+            var specialtiesEquipmentFile = document.getElementById("specialtiesEquipmentFile").files[0];
+            var emergencyMedicines = document.querySelector('input[name="emergencyMedicines"]:checked').value;
+            var clockChemistShop = document.querySelector('input[name="clockChemistShop"]:checked').value;
+            var professionalTaxFile = document.getElementById("professionalTaxFile").files[0];
+
+            if(methodOfBioMedicalWasteFile !== undefined && MPCBFile !== undefined && AERBFile !== undefined && PNDTFile !== undefined &&
+            EPF !== '' && NonForfeitureFile !== undefined && FireSafetySystemFile !== undefined && operationTheatre !== '' &&
+            outlay !== '' && zones !== '' && number !== '' && majorMinor !== '' && OTEquipmentFile !== undefined &&
+            specialtiesEquipmentFile !== undefined && emergencyMedicines !== '' && clockChemistShop !=='' && professionalTaxFile !== undefined)
+            {
+                var form_data = new FormData();
+                form_data.append('methodOfBioMedicalWasteFile', methodOfBioMedicalWasteFile);
+                form_data.append('MPCBFile', MPCBFile);
+                form_data.append('AERBFile', AERBFile);
+                form_data.append('PNDTFile', PNDTFile);
+                form_data.append('EPF', EPF);
+                form_data.append('NonForfeitureFile', NonForfeitureFile);
+                form_data.append('FireSafetySystemFile', FireSafetySystemFile);
+                form_data.append('operationTheatre', operationTheatre);
+                form_data.append('outlay', outlay);
+                form_data.append('zones', zones);
+                form_data.append('number', number);
+                form_data.append('majorMinor', majorMinor);
+                form_data.append('OTEquipmentFile', OTEquipmentFile);
+                form_data.append('specialtiesEquipmentFile', specialtiesEquipmentFile);
+                form_data.append('emergencyMedicines', emergencyMedicines);
+                form_data.append('clockChemistShop', clockChemistShop);
+                form_data.append('professionalTaxFile', professionalTaxFile);
+
+                $.ajax({
+                    type: 'post',
+                    url: '{% url "home:CheckListOtherDetailsApiView" %}',
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.message === 'success') {
+                            $('body')
+                                .toast({
+                                    class: 'success',
+                                    title: 'Applicant Details Upload Successfully.',
+                                    message: 'Upload Next .',
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                        }
+                        else if (response.message === 'error') {
+                            $('body')
+                                .toast({
+                                    class: 'error',
+                                    title: 'Error',
+                                    message: 'Please try again.',
+                                    showProgress: 'bottom',
+                                    classProgress: 'grey',
+                                    position: 'top center',
+
+                                });
+
+                        }
+                        else {
+                            $('body')
+                                .toast({
+                                    class: 'warning',
+                                    title: 'Something Went Wrong.',
+                                    message: 'Please try again.',
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                        }
+
+                    },
+                    error: function (e) {
+
+                        console.log(e);
+                    }
+                });
+            }
+            else
+            {
+                $('body')
+                    .toast({
+                        class: 'warning',
+                        title: 'Fields Requires',
+                        message: 'All fields are required',
+                        showProgress: 'bottom',
+                        classProgress: 'red',
+                        position: 'top center',
+
+                    })
+                ;
+            }
+        }
+
+        function CampusDetails() {
+            var parkingSpace = $('#parkingSpace').val();
+            var buildingStructure = $('#buildingStructure').val();
+            var noOfFloor = $('#noOfFloor').val();
+            var schematicDiagram = $('#schematicDiagram').val();
+            var schematicDiagramFile = document.getElementById("schematicDiagramFile").files[0];
+            var noOfRooms = $('#noOfRooms').val();
+            var areaOfRooms = $('#areaOfRooms').val();
+            if(parkingSpace !== '' && buildingStructure !== '' && noOfFloor !== '' && schematicDiagram !=='' && schematicDiagramFile !== undefined
+            && noOfRooms !== '' && areaOfRooms !== '')
+            {
+                var form_data = new FormData();
+                form_data.append('parkingSpace', parkingSpace);
+                form_data.append('buildingStructure', buildingStructure);
+                form_data.append('noOfFloor', noOfFloor);
+                form_data.append('schematicDiagram', schematicDiagram);
+                form_data.append('schematicDiagramFile', schematicDiagramFile);
+                form_data.append('noOfRooms', noOfRooms);
+                form_data.append('areaOfRooms', areaOfRooms);
+                $.ajax({
+                    type: 'post',
+                    url: '{% url "home:CampusDetailsApiView" %}',
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.message === 'success') {
+                            $('body')
+                                .toast({
+                                    class: 'success',
+                                    title: 'Applicant Campus Details Upload Successfully.',
+                                    message: 'Upload Next .',
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                        }
+                        else if (response.message === 'error') {
+                            $('body')
+                                .toast({
+                                    class: 'error',
+                                    title: 'Error',
+                                    message: 'Please try again.',
+                                    showProgress: 'bottom',
+                                    classProgress: 'grey',
+                                    position: 'top center',
+
+                                });
+
+                        }
+                        else {
+                            $('body')
+                                .toast({
+                                    class: 'warning',
+                                    title: 'Something Went Wrong.',
+                                    message: 'Please try again.',
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                        }
+
+                    },
+                    error: function (e) {
+
+                        console.log(e);
+                    }
+                });
+            }
+            else
+            {
+                $('body')
+                    .toast({
+                        class: 'warning',
+                        title: 'Fields Requires',
+                        message: 'All fields are required',
+                        showProgress: 'bottom',
+                        classProgress: 'red',
+                        position: 'top center',
+
+                    })
+                ;
+            }
+        }
+{#        end update#}
+if ($('#agree').is(":checked"))
+{
+  alert('gg')
+}
+$('#agree').click(function() {
+    var isCheck = $('#agree').prop('checked');
+    if(isCheck === true){
+         $('#submitData').prop('disabled', false);
+    }else{
+        $('#submitData').prop('disabled', true);
+    }
+});
+    </script>
+{% endblock %}
+{% block mainBody %}
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% block title %}
+    <title>Applicant Dashboard</title>
+{% endblock %}
+{% block js %}
+
+{% endblock %}
+{% block body %}
+    <div class="ui container">
+        <div class="ui segment">
+            <h4 class="ui dividing header">Progress Bar For Form A Submitted on 20/03/2021</h4>
+            <div class="ui indicating progress" data-value="74" data-total="100" id="example1">
+                <div class="bar">
+                    <div class="progress"></div>
+                </div>
+                <div class="label">Review Completed</div>
+            </div>
+        </div>
+        <div class="ui segment">
+            <h4 class="ui dividing header">Download Certificate</h4>
+            <button class="ui primary elastic loading button">Loading</button>
+        </div>
+        <div class="ui segment">
+            <h4 class="ui dividing header">Information</h4>
+            <div class="ui icon message">
+                <i class="inbox icon"></i>
+                <div class="content">
+                    <div class="header">
+                        Have you heard about our mailing list?
+                    </div>
+                    <p>Get the best news in your e-mail every day.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#example1').progress({
+            duration: 100,
+            total: 100,
+            text: {
+                active: '{value} of {total}% done Reviewing'
+            }
+        });
+    </script>
+{% endblock %}
+{% block mainBody %}
+
+{% endblock %}
