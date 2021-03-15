@@ -114,13 +114,13 @@
             <a class="item" href="{% url 'homeApp:pending_list' %}">
                 <div><i class="clipboard list icon"></i>Pending Applicant</div>
             </a>
-            <a class="item" href="#">
+            <a class="item" href="{% url 'homeApp:approval_list' %}">
                 <div><i class="clipboard check icon"></i>Approved Applicant</div>
             </a>
 
         </div>
     </div>
-    <div class="item">
+{% comment %}    <div class="item">
         <div class="header">
             <i class="user icon"></i>
             Admin
@@ -131,7 +131,7 @@
             </a>
 
         </div>
-    </div>
+    </div>{% endcomment %}
     <!--Reports-->
 
     <a href="#" class="item">

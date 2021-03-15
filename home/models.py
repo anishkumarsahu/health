@@ -175,6 +175,7 @@ class Campus(models.Model): # new
     modificationDate = models.DateTimeField(auto_now=True, auto_now_add=False) #new
     isDeleted = models.BooleanField(default=False) #new
 
+
 class CheckListOtherDetails(models.Model): #new
     applicantID = models.ForeignKey(Applicant, blank=True, null=True, on_delete=models.CASCADE)
     methodOfBioMedicalWasteFile = models.FileField(upload_to='BMW',blank=True,null=True) #new
@@ -195,5 +196,16 @@ class CheckListOtherDetails(models.Model): #new
     clockChemistShop = models.CharField(max_length=200,blank=True,null=True) #new
     professionalTaxFile = models.FileField(upload_to='PTF',null=True,blank=True) #new
     datetime = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modificationDate = models.DateTimeField(auto_now=True, auto_now_add=False)
+    isDeleted = models.BooleanField(default=False)
+
+
+class Certificate(models.Model):
+    applicantID = models.ForeignKey(Applicant, blank=True, null=True, on_delete=models.CASCADE)
+    startDate = models.DateField(blank=True, null=True)
+    endDate = models.DateField(blank=True, null=True)
+    approvedBy =  models.ForeignKey(AdminUser, blank=True, null=True, on_delete=models.CASCADE, related_name='ByROCertificate')
+    datetime = models.DateTimeField(auto_now=False, auto_now_add=True)
+    remark = models.TextField(blank=True, null=True)
     modificationDate = models.DateTimeField(auto_now=True, auto_now_add=False)
     isDeleted = models.BooleanField(default=False)

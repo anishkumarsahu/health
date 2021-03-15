@@ -8,40 +8,346 @@
 {% endblock %}
 {% block body %}
     <div class="ui container">
+        <div class="ui segment" style="font-family: monospace; text-align: left">
+            <div class="ui segment">
+                <div class="ui raised segment">
+                    <h4 class="ui header">1. Full name of the Applicant:
+                        (in block letters )</h4>
+                    <p>{{ instances.name|upper }}</p>
+                    <h4 class="ui header">2. Full residential address,Telephone number of the applicant.</h4>
+                    <p>Address: {{ instances.addressOfApplicant|upper }}</p>
+                    <p>Phone Number: {{ instances.phoneNumberOfApplicant }}</p>
+                    <p>Download Address Proof Certificate <a href="{{ instances.addressProofFile.url }}" download>DOWNLOAD</a>
+                    </p>
+                    <h4 class="ui header">3. Professional or technical qualification,if any of the applicant.</h4>
+                    <p>{{ instances.professionalOrTechnicalQualification|upper }}</p>
+                    <h4 class="ui header">4. Nationality of the applicant.</h4>
+                    <p>{{ instances.nationality|upper }}</p>
+                    <h4 class="ui header">5. Full address with telephone number of the registered office or principal
+                        office of
+                        the
+                        society, association or company running the nursing home/clinic.</h4>
+                    <p>Address: {{ instances.addressOfOffice|upper }}</p>
+                    <p>Phone Number: {{ instances.phoneNumberOfOffice }}</p>
+                    <h4 class="ui header">6. Name and other particulars of the nursing home/clinic in respect of which
+                        the
+                        registration is applied for</h4>
+                    <p>{{ instances.nameAndOtherParticularRegisterFor|upper }}</p>
+                    <h4 class="ui header">7. Full address where the nursing home/clinic is situated</h4>
+                    <p>Address: {{ instances.AddressWhereNursingSituated|upper }}</p>
+                </div>
+                <div class="ui raised segment">
+                    <h4 class="ui header">8. Type of nursing home</h4>
+                    <p>Category: {{ instances.typeOfApplicationCategory|upper }}</p>
+                    <p>Sub Category: {{ instances.typeOfApplicationSubCategory|upper }}</p>
+                    <div class="ui raised segment">
+                        <div class="field">
+                            <h4 class="ui header">I. Method of Bio-Medical Waste Disposal/Certificate from CBWTF</h4>
+                            <p>Download Document <a href="{{ applicant_other_details.methodOfBioMedicalWasteFile.url }}"
+                                                    download>DOWNLOAD</a></p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">II. MPCB Consent to operate/establish, Authorization certificate</h4>
+                            <p>Download Document <a href="{{ applicant_other_details.MPCBFile.url }}"
+                                                    download>DOWNLOAD</a></p>
+                        </div>
+
+
+                        <div class="field">
+                            <h4 class="ui header">III. AERB Authorization for X-Ray, CT-Scan & MRI installation</h4>
+                            <p>Download Document <a href="{{ applicant_other_details.AERBFile.url }}"
+                                                    download>DOWNLOAD</a></p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">IV. (PC)PNDT certificate from FW dept. for USG installation</h4>
+                            <p>Download Document <a href="{{ applicant_other_details.PNDTFile.url }}"
+                                                    download>DOWNLOAD</a></p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">V. EPF scheme application (>20 staffs)</h4>
+                            <p>Response: {{ applicant_other_details.EPF|upper }}</p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">VI. Issue a Certificate for Non-Forfeiture of Original Certificates of
+                                the
+                                staffs</h4>
+                            <p>Download Document <a href="{{ applicant_other_details.NonForfeitureFile.url }}"
+                                                    download>DOWNLOAD</a></p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">VII. Fire Safety System adopted including escape door, stairs, signage
+                                etc. No
+                                Objection Certificate from the Fire Service Dept.</h4>
+                            <p>Download Document <a href="{{ applicant_other_details.FireSafetySystemFile.url }}"
+                                                    download>DOWNLOAD</a>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">VIII. Operation Theatre</h4>
+                            <p>Response: {{ applicant_other_details.operationTheatre|upper }}</p>
+                        </div>
+                        <div class="ui segment ">
+                            <h5 class="ui header ">a. OUTLAY:</h5>
+                            <p>{{ applicant_other_details.outlay|upper }}</p>
+                            <h5 class="ui header ">b. ZONES: </h5>
+                            <p>{{ applicant_other_details.zones|upper }}</p>
+                            <h5 class="ui header ">c. NUMBER: </h5>
+                            <p>{{ applicant_other_details.number }}</p>
+                            <h5 class="ui header ">d. MAJOR/MINOR: </h5>
+                            <p>{{ applicant_other_details.majorMinor|upper }}</p>
+                            <h5 class="ui header ">e. DOWNLOAD EQUIPMENTS LIST OF O.T:</h5>
+                            <p>Download Document <a href="{{ applicant_other_details.OTEquipmentFile.url }}" download>DOWNLOAD</a>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">IX. Equipments list of other specialties</h4>
+                            <p>Download Document <a href="{{ applicant_other_details.specialtiesEquipmentFile.url }}"
+                                                    download>DOWNLOAD</a></p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">X. Availability of emergency medicines</h4>
+                            <p>{{ applicant_other_details.emergencyMedicines|upper }}</p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">XI. Availability of round the clock chemist shop</h4>
+                            <p>{{ applicant_other_details.clockChemistShop|upper }}</p>
+                        </div>
+                        <div class="field">
+                            <h4 class="ui header">XII. Professional Tax</h4>
+                            <p>Download Document <a href="{{ applicant_other_details.professionalTaxFile.url }}"
+                                                    download>DOWNLOAD</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui segment">
+                <div class="ui raised segment">
+                    <h4 class="ui header">9. Whether any other business is or will be carried out in the same premises
+                        as that
+                        of the nursing home or the clinic.</h4>
+                    <p>{{ instances.anyOtherBusinessInSameResidence|upper }}</p>
+                </div>
+                <div class="ui raised segment">
+                    <h4 class="ui header">10. A brief description of the accommodations available and the equipment and
+                        facilities provided for in nursing home or the clinic which, among others include the following
+                        :</h4>
+                    <div class="ui segment">
+                        <h5 class="ui header">I. Floor space of bed rooms provided for patients giving number of beds
+                            Floor
+                            space</h5>
+                        <p>Floor space: {{ instances.accommodationAvailableFloorSpace|upper }}</p>
+                        <p>Bed Rooms: {{ instances.accommodationAvailableNumberOfBed|upper }}</p>
+                        <h5 class="ui header">II. Floor space and number of wash basins, toilet (separate, attached or
+                            common.)bathrooms,
+                            available for patients, staff, and visitors</h5>
+                        <p>{{ instances.accommodationAvailableToiletWash|upper }}</p>
+                        <h5 class="ui header">III. Floor space available for storage of drugs, linen, furniture and
+                            food.</h5>
+                        <p>{{ instances.accommodationAvailableDrugsLinenFurniture|upper }}</p>
+                        <h5 class="ui header">IV. Arrangement for transportation of patients – stretcher/trolley with
+                            provision
+                            for ramps.</h5>
+                        <p>{{ instances.accommodationAvailableForTransportation|upper }}</p>
+                        <h5 class="ui header">V. Floor space of kitchen, stall room, duty rooms, nursing station, day
+                            rooms,library,conference (hall).</h5>
+                        <p>{{ instances.accommodationAvailableForKitchenStall|upper }}</p>
+                    </div>
+                </div>
+                <div class="ui raised segment">
+                    <h4 class="ui header">11. No. of beds provided</h4>
+                    <p>I. For maternity patients: {{ instances.noOfBedForMaternity|upper }}</p>
+                    <p>II. For other patients: {{ instances.noOfBedForPatient|upper }}</p>
+                </div>
+                <div class="ui raised segment">
+                    <h4 class="ui header">12. Place where the nursing staff is accommodated.</h4>
+                    <p>{{ instances.placeWhereTheNursingStaffAccommodated|upper }}</p>
+                    <h4 class="ui header">13. The number of hours in each week the staff referred to in rule(14) are or
+                        are to
+                        be required to work.</h4>
+                    <p>{{ instances.numberOfHoursInAWeekToWork }}<span> Hours</span></p>
+                    <h4 class="ui header">14. The arrangement for supply of blood and blood products.</h4>
+                    <p>{{ instances.arrangementForBlood|upper }}</p>
+                </div>
+                <div class="ui raised segment">
+                    <h4 class="ui header">15. The arrangement made for provision of pathology, microbiology and
+                        radiology
+                        services.</h4>
+                    <p>a. pathology services: {{ instances.arrangementForPathology|upper }}</p>
+                    <p>b. microbiology services: {{ instances.arrangementForMicrobiology|upper }}</p>
+                    <p>c. radiology services: {{ instances.arrangementForRadiology|upper }}</p>
+                </div>
+                <div class="ui raised segment">
+                    <h4 class="ui header">16. Fees (item wise) charged or to be charged to patients (enclose
+                        details).</h4>
+                    <p>Download Document <a href="{{ instances.feesFile.url }}" download>DOWNLOAD</a></p>
+                    <h4 class="ui header">17. Any provision for free/non-paying beds and services for indigent/poor
+                        patients.</h4>
+                    <p>{{ instances.provisionForPoor|upper }}</p>
+                    <h4 class="ui header">18. Whether the applicant has other nursing home or business elsewhere.</h4>
+                    <p>{{ instances.otherBusinessOrNursingHome|upper }}</p>
+                    <h4 class="ui header">19. Provision for life saving & emergency drugs.</h4>
+                    <p>{{ instances.provisionForLifeSavingAndEmergencyDrug|upper }}</p>
+                    <h4 class="ui header">20. Provision/Arrangement for handling emergency/accident patients.</h4>
+                    <p>{{ instances.provisionForEmergency|upper }}</p>
+                </div>
+                <div class="ui raised segment">
+                    <h4 class="ui header">21. No. & Year of Registration</h4>
+                    <p>Registration Number: {{ instances.registrationNumber|upper }}</p>
+                    <p>Registration Year: {{ instances.registrationYear }}</p>
+                </div>
+                <div class="ui raised segment">
+                    <h4 class="ui header">22. Campus Details</h4>
+                    <div class="ui segment">
+                        <h4 class="ui header">i. Parking space- Description</h4>
+                        <p>{{ applicant_campus.parkingSpace|upper }}</p>
+                        <h4 class="ui header">ii. Building structure</h4>
+                        <p>{{ applicant_campus.buildingStructure|upper }}</p>
+                        <h4 class="ui header">iii. Number of floor</h4>
+                        <p>{{ applicant_campus.noOfFloor|upper }}</p>
+                        <h4 class="ui header">iv. Schematic diagram of floor wise rooms with labeling</h4>
+                        <p>{{ applicant_campus.schematicDiagram|upper }}</p>
+                        <div class="ui segment">
+                            <p>Download Document <a href="{{ applicant_campus.schematicDiagramFile.url }}" download>DOWNLOAD</a>
+                            </p>
+                        </div>
+                        <h4 class="ui header">v. Number of rooms used, area of rooms </h4>
+                        <div class="ui segment">
+                            <h4 class="ui header">Number of rooms</h4>
+                            <p>{{ applicant_campus.noOfRooms|upper }}</p>
+                            <h4 class="ui header">Area of rooms</h4>
+                            <p>{{ applicant_campus.areaOfRooms|upper }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">23. The full names, age, qualification, and experiences of persons employed in
+                        the
+                        management of the nursing home or the clinic and whether they are or will be resident in the
+                        nursing
+                        home or the clinic.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+                            <thead>
+                            <tr>
+                                <th>Full Name Of Employee</th>
+                                <th>Age For Employee</th>
+                                <th>Qualification For Employee</th>
+                                <th>Experience For Employee</th>
+                                <th>Qualification Certificate</th>
+                                <th>Experience Certificate</th>
+                                <th>Appointment Order Certificate</th>
+                                <th>Acceptance letter Certificate</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for a in applicantPersonEmployer %}
+                                <tr>
+                                    <td>{{ a.name|upper }}</td>
+                                    <td>{{ a.age }}</td>
+                                    <td>{{ a.qualification|upper }}</td>
+                                    <td>{{ a.experience|upper }}</td>
+                                    <td><a href="{{ a.qualificationFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ a.experienceFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ a.appointmentOrderFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ a.acceptanceFile.url }}" download>DOWNLOAD</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">24. The full names, age, qualification, and experiences of the members of the
+                        medical
+                        staff.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+                            <thead>
+                            <tr>
+                                <th>Full Name Of The Medical Staff</th>
+                                <th>Age For The Medical Staff</th>
+                                <th>Qualification For The Medical Staff</th>
+                                <th>Experience For The Medical Staff</th>
+                                <th>Qualification Certificate</th>
+                                <th>Experience Certificate</th>
+                                <th>Appointment Order Certificate</th>
+                                <th>Acceptance letter Certificate</th>
+                                <th>MMC Certificate</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for b in applicantDoctorStaff %}
+                                <tr>
+                                    <td>{{ b.name|upper }}</td>
+                                    <td>{{ b.age }}</td>
+                                    <td>{{ b.qualification|upper }}</td>
+                                    <td>{{ b.experience|upper }}</td>
+                                    <td><a href="{{ b.qualificationFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ b.experienceFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ b.appointmentOrderFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ b.acceptanceFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ b.mmcFile.url }}" download>DOWNLOAD</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">25. The full names, age, qualifications, of the nursing and other technical,
+                        ancillary
+                        staff.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+                            <thead>
+                            <tr>
+                                <th>Staff Type</th>
+                                <th>Full Name Of Staff</th>
+                                <th>Age For Staff</th>
+                                <th>Qualification For Staff</th>
+                                <th>Qualification Certificate</th>
+                                <th>Experience Certificate</th>
+                                <th>Appointment Order Certificate</th>
+                                <th>Acceptance letter Certificate</th>
+                                <th>MMC Certificate</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in applicantNurseStaff %}
+                                <tr>
+                                    <td>{{ c.name|upper }}</td>
+                                    <td>{{ c.age }}</td>
+                                    <td>{{ c.qualification|upper }}</td>
+                                    <td>{{ c.experience|upper }}</td>
+                                    <td><a href="{{ c.qualificationFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ c.experienceFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ c.appointmentOrderFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ c.acceptanceFile.url }}" download>DOWNLOAD</a></td>
+                                    <td><a href="{{ c.mmcFile.url }}" download>DOWNLOAD</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="ui segment">
             <h4 class="ui dividing header">Progress Bar For Form A Submitted on 20/03/2021</h4>
-            <div class="ui indicating progress" data-value="74" data-total="100" id="example1">
+            <div class="ui active blue indeterminate progress">
                 <div class="bar">
                     <div class="progress"></div>
                 </div>
-                <div class="label">Review Completed</div>
+                <div class="label">Please Wait While The Reviewing Process is Complete</div>
             </div>
         </div>
         <div class="ui segment">
             <h4 class="ui dividing header">Download Certificate</h4>
             <button class="ui primary elastic loading button">Loading</button>
         </div>
-        <div class="ui segment">
-            <h4 class="ui dividing header">Information</h4>
-            <div class="ui icon message">
-                <i class="inbox icon"></i>
-                <div class="content">
-                    <div class="header">
-                        Have you heard about our mailing list?
-                    </div>
-                    <p>Get the best news in your e-mail every day.</p>
-                </div>
-            </div>
-        </div>
+
     </div>
     <script>
-        $('#example1').progress({
-            duration: 100,
-            total: 100,
-            text: {
-                active: '{value} of {total}% done Reviewing'
-            }
-        });
     </script>
 {% endblock %}
 {% block mainBody %}

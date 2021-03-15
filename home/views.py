@@ -9,6 +9,8 @@ from django_datatables_view.base_datatable_view import BaseDatatableView
 from functools import wraps
 from html import escape
 
+import datetime
+
 from .models import *
 
 
@@ -176,13 +178,95 @@ def user_list(request):
 
 @check_group('RO')
 def pending_list(request):
-    return render(request, 'home/admin/pendingList.html')
+    return render(request, 'home/admin/pendingListRo.html')
+
+
+@check_group('RO')
+def approval_list(request):
+    return render(request, 'home/admin/approvedListRo.html')
+
+
+class RoPendingListJson(BaseDatatableView):
+    order_columns = ['name','enrollmentNumber','typeOfApplicationCategory','typeOfApplicationSubCategory','datetime']
+
+    def get_initial_queryset(self):
+        return Applicant.objects.filter(isDeleted__exact=False, isDetailCompletelySubmitted__exact=True, isCheckedByInspector=True, isApproved__exact=False)
+
+    def filter_queryset(self, qs):
+        search = self.request.GET.get('search[value]', None)
+        if search:
+            qs = qs.filter(
+                Q(name__icontains=search) | Q(enrollmentNumber__icontains=search)| Q(typeOfApplicationCategory__icontains=search)
+                |Q(typeOfApplicationSubCategory__icontains=search)|Q(datetime__icontains=search), isDeleted__exact=False)
+        return qs
+    def prepare_results(self, qs):
+        json_data = []
+        i = 1
+        for item in qs:
+            action = ''' <a class="column" data-tooltip="View" href="/roHome/applicant_from_detail_ro/{}/" style="position: absolute;width: 0px;margin-left: -26px;margin-top: -10px;"><i class="file alternate outline icon"></i></a>
+                         '''.format(item.pk)
+
+            json_data.append([
+                escape(item.name),  # escape HTML for security reasons
+                escape(item.enrollmentNumber),
+                escape(item.typeOfApplicationCategory),
+                escape(item.typeOfApplicationSubCategory),
+                escape(item.datetime.strftime('%d-%m-%Y %I:%M %p')),
+                action
+            ])
+            i = i + 1
+        return json_data
+
+class RoApprovalListJson(BaseDatatableView):
+    order_columns = ['name','enrollmentNumber','typeOfApplicationCategory','typeOfApplicationSubCategory','datetime']
+
+    def get_initial_queryset(self):
+        return Applicant.objects.filter(isDeleted__exact=False, isDetailCompletelySubmitted__exact=True, isCheckedByInspector=True, isApproved__exact=True)
+
+    def filter_queryset(self, qs):
+        search = self.request.GET.get('search[value]', None)
+        if search:
+            qs = qs.filter(
+                Q(name__icontains=search) | Q(enrollmentNumber__icontains=search)| Q(typeOfApplicationCategory__icontains=search)
+                |Q(typeOfApplicationSubCategory__icontains=search)|Q(datetime__icontains=search), isDeleted__exact=False)
+        return qs
+    def prepare_results(self, qs):
+        json_data = []
+        i = 1
+        for item in qs:
+            action = ''' <a class="column" data-tooltip="View" href="/roHome/applicant_from_detail_ro/{}/" style="position: absolute;width: 0px;margin-left: -26px;margin-top: -10px;"><i class="file alternate outline icon"></i></a>
+                         '''.format(item.pk)
+
+            json_data.append([
+                escape(item.name),  # escape HTML for security reasons
+                escape(item.enrollmentNumber),
+                escape(item.typeOfApplicationCategory),
+                escape(item.typeOfApplicationSubCategory),
+                escape(item.datetime.strftime('%d-%m-%Y %I:%M %p')),
+                action
+            ])
+            i = i + 1
+        return json_data
 
 
 @check_group('RO')
 def applicant_detail(request):
     return render(request, 'home/admin/applicantDetail.html')
 
+
+@check_group('RO')
+def applicant_form_detail_ro(request, id=None):
+    instance = get_object_or_404(Applicant, id=id)
+    applicant_person_employed = ApplicantPersonEmployed.objects.filter(applicantID_id=instance.pk)
+    applicant_doctor_staff = ApplicantDoctorStaff.objects.filter(applicantID_id=instance.pk)
+    applicant_nurse_staff = ApplicantNurseStaff.objects.filter(applicantID_id=instance.pk)
+    context = {
+        'instances': instance,
+        'applicantPersonEmployer': applicant_person_employed,
+        'applicantDoctorStaff': applicant_doctor_staff,
+        'applicantNurseStaff': applicant_nurse_staff
+    }
+    return render(request, 'home/admin/applicantFormDetailRo.html', context)
 
 def applicant_form_detail(request,id=None):
     instance = get_object_or_404(Applicant,id=id)
@@ -196,6 +280,53 @@ def applicant_form_detail(request,id=None):
         'applicantNurseStaff': applicant_nurse_staff
     }
     return render(request, 'home/admin/applicantFormDetail.html',context)
+
+
+
+@check_group('RO')
+def after_verify_applicant_checklist_ro(request, id=None):
+    instance = get_object_or_404(Applicant, id=id)
+    checklist=get_object_or_404(ApplicantCheckList, applicantID_id = instance.pk )
+    context = {
+        'instances': instance,
+        'checklist':checklist
+    }
+    return render(request, 'home/admin/applicantDetailChecklistAfterVerifyRo.html', context)
+
+@csrf_exempt
+def approve_and_issue_certificate_to_applicant(request):
+    if request.method == 'POST':
+        try:
+
+            remarkByRO = request.POST.get('remarkByRO')
+            applicantID = request.POST.get('applicantID')
+            startDate = request.POST.get('startDate')
+            endDate = request.POST.get('endDate')
+
+            check = ApplicantCheckList.objects.get(applicantID_id= int(applicantID))
+            ad = AdminUser.objects.get(userID_id=request.user.pk)
+            check.approvedBy_id = ad.pk
+            check.remarkByRo = remarkByRO
+            ap = Applicant.objects.get(pk = int(applicantID))
+            ap.isApproved = True
+            ap.approvedBy_id = ad.pk
+            c = Certificate()
+            c.approvedBy_id = ad.pk
+            c.remark = remarkByRO
+            c.approvedBy_id = int(applicantID)
+            c.startDate = datetime.strptime(startDate, '%d/%m/%Y')
+            c.endDate = datetime.strptime(endDate, '%d/%m/%Y')
+            ap.save()
+            check.save()
+            c.save()
+
+            return JsonResponse({'message': 'success'})
+        except:
+            return JsonResponse({'message': 'error'})
+    else:
+        return JsonResponse({'message': 'fail'})
+
+
 
 # ------------------------------Inspection-------------------------------------------
 
@@ -250,19 +381,66 @@ class inspectionPendingListJson(BaseDatatableView):
         return json_data
 
 
+class inspectionApproveListJson(BaseDatatableView):
+    order_columns = ['name','enrollmentNumber','typeOfApplicationCategory','typeOfApplicationSubCategory','datetime']
+
+    def get_initial_queryset(self):
+        return Applicant.objects.filter(isDeleted__exact=False, isDetailCompletelySubmitted__exact=True, isCheckedByInspector=True)
+
+    def filter_queryset(self, qs):
+        search = self.request.GET.get('search[value]', None)
+        if search:
+            qs = qs.filter(
+                Q(name__icontains=search) | Q(enrollmentNumber__icontains=search)| Q(typeOfApplicationCategory__icontains=search)
+                |Q(typeOfApplicationSubCategory__icontains=search)|Q(datetime__icontains=search), isDeleted__exact=False)
+        return qs
+    def prepare_results(self, qs):
+        json_data = []
+        i = 1
+        for item in qs:
+            action = ''' <a class="column" data-tooltip="View" href="/inspectionHome/applicant_from_detail/{}/" style="position: absolute;width: 0px;margin-left: -26px;margin-top: -10px;"><i class="file alternate outline icon"></i></a>
+                         '''.format(item.pk)
+
+            json_data.append([
+                escape(item.name),  # escape HTML for security reasons
+                escape(item.enrollmentNumber),
+                escape(item.typeOfApplicationCategory),
+                escape(item.typeOfApplicationSubCategory),
+                escape(item.datetime.strftime('%d-%m-%Y %I:%M %p')),
+                action
+            ])
+            i = i + 1
+        return json_data
+
+
+
 @check_group('Inspection')
 def applicant_form_detail_inspection(request, id=None):
     instance = get_object_or_404(Applicant, id=id)
     applicant_person_employed = ApplicantPersonEmployed.objects.filter(applicantID_id=instance.pk)
     applicant_doctor_staff = ApplicantDoctorStaff.objects.filter(applicantID_id=instance.pk)
     applicant_nurse_staff = ApplicantNurseStaff.objects.filter(applicantID_id=instance.pk)
+    applicant_campus = Campus.objects.get(applicantID_id=instance.pk)
+    applicant_other_details = CheckListOtherDetails.objects.get(applicantID_id=instance.pk)
+
     context = {
         'instances': instance,
         'applicantPersonEmployer': applicant_person_employed,
         'applicantDoctorStaff': applicant_doctor_staff,
-        'applicantNurseStaff': applicant_nurse_staff
+        'applicantNurseStaff': applicant_nurse_staff,
+        'applicant_campus': applicant_campus,
+        'applicant_other_details': applicant_other_details,
     }
     return render(request, 'home/inspection/applicantFormDetailInspection.html', context)
+
+
+
+@check_group('Inspection')
+def inspectionApprovedList(request):
+    return render(request, 'home/inspection/approvedList.html')
+
+
+
 
 @check_group('Inspection')
 def verify_applicant_checklist_inspection(request, id=None):
@@ -272,6 +450,83 @@ def verify_applicant_checklist_inspection(request, id=None):
     }
     return render(request, 'home/inspection/applicantDetailChecklist.html', context)
 
+
+@check_group('Inspection')
+def after_verify_applicant_checklist_inspection(request, id=None):
+    instance = get_object_or_404(Applicant, id=id)
+    checklist=get_object_or_404(ApplicantCheckList, applicantID_id = instance.pk )
+    context = {
+        'instances': instance,
+        'checklist':checklist
+    }
+    return render(request, 'home/inspection/applicantDetailChecklistAfterVerify.html', context)
+
+@csrf_exempt
+def submit_checklist_applicant(request):
+    if request.method == 'POST':
+        try:
+            forwardingLetter = request.POST.get('forwardingLetter')
+            formA = request.POST.get('formA')
+            campus = request.POST.get('campus')
+            stafflist = request.POST.get('stafflist')
+            certificates = request.POST.get('certificates')
+            ratesOrTraffic = request.POST.get('ratesOrTraffic')
+            rentCopy = request.POST.get('rentCopy')
+            appointmentOrder = request.POST.get('appointmentOrder')
+            acceptanceCertificate = request.POST.get('acceptanceCertificate')
+            methodOfWasteDisposal = request.POST.get('methodOfWasteDisposal')
+            mpcb = request.POST.get('mpcb')
+            aerb = request.POST.get('aerb')
+            pndt = request.POST.get('pndt')
+            beds = request.POST.get('beds')
+            epf = request.POST.get('epf')
+            certifcateOfStaff = request.POST.get('certifcateOfStaff')
+            fire = request.POST.get('fire')
+            operationTheater = request.POST.get('operationTheater')
+            equipments = request.POST.get('equipments')
+            emergencyMedicines = request.POST.get('emergencyMedicines')
+            chemistShop = request.POST.get('chemistShop')
+            professionalTax = request.POST.get('professionalTax')
+            remarkByInspection = request.POST.get('remarkByInspection')
+            applicantID = request.POST.get('applicantID')
+
+            check = ApplicantCheckList()
+            check.forwardingLetter = bool(forwardingLetter)
+            check.formA = bool(formA)
+            check.campus = bool(campus)
+            check.stafflist = bool(stafflist)
+            check.certificates = bool(certificates)
+            check.ratesOrTraffic = bool(ratesOrTraffic)
+            check.rentCopy = bool(rentCopy)
+            check.appointmentOrder = bool(appointmentOrder)
+            check.acceptanceCertificate = bool(acceptanceCertificate)
+            check.methodOfWasteDisposal = bool(methodOfWasteDisposal)
+            check.mpcb = bool(mpcb)
+            check.aerb = bool(aerb)
+            check.pndt = bool(pndt)
+            check.beds = bool(beds)
+            check.epf = bool(epf)
+            check.certifcateOfStaff = bool(certifcateOfStaff)
+            check.fire = bool(fire)
+            check.operationTheater = bool(operationTheater)
+            check.equipments = bool(equipments)
+            check.emergencyMedicines = bool(emergencyMedicines)
+            check.chemistShop = bool(chemistShop)
+            check.professionalTax = bool(professionalTax)
+            check.remarkByInspection = remarkByInspection
+            check.applicantID_id = int(applicantID)
+            ad = AdminUser.objects.get(userID_id=request.user.pk)
+            check.verifiedBy_id = ad.pk
+            ap = Applicant.objects.get(pk = int(applicantID))
+            ap.isCheckedByInspector = True
+            ap.checkedBy_id = ad.pk
+            ap.save()
+            check.save()
+            return JsonResponse({'message': 'success'})
+        except:
+            return JsonResponse({'message': 'error'})
+    else:
+        return JsonResponse({'message': 'fail'})
 
 
 # ------------------------------ Customer ---------------------------------
@@ -351,4 +606,26 @@ def registrationformA(request):
 
 # Applicant Dashboard
 def applicantDashboard(request):
-    return render(request,'home/customer/applicantDashboard.html')
+    instance = get_object_or_404(Applicant, applicantUserID__userID_id=request.user.pk)
+    applicant_person_employed = ApplicantPersonEmployed.objects.filter(applicantID_id=instance.pk)
+    applicant_doctor_staff = ApplicantDoctorStaff.objects.filter(applicantID_id=instance.pk)
+    applicant_nurse_staff = ApplicantNurseStaff.objects.filter(applicantID_id=instance.pk)
+    applicant_campus = Campus.objects.get(applicantID_id=instance.pk)
+    applicant_other_details = CheckListOtherDetails.objects.get(applicantID_id = instance.pk)
+    context = {
+        'instances': instance,
+        'applicantPersonEmployer': applicant_person_employed,
+        'applicantDoctorStaff': applicant_doctor_staff,
+        'applicantNurseStaff': applicant_nurse_staff,
+        'applicant_campus': applicant_campus,
+        'applicant_other_details': applicant_other_details,
+    }
+    return render(request,'home/customer/applicantDashboard.html',context)
+
+# New Applicant Profile
+def applicantProfile(request):
+    instance = get_object_or_404(ApplicantLoginDetail,userID_id = request.user.pk)
+    context = {
+        'instances': instance
+    }
+    return render(request,'home/customer/applicantProfile.html',context)

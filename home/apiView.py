@@ -314,3 +314,22 @@ def RequestForApplicantApprovalApiView(request):
         except:
             return JsonResponse({'message': 'error'}, safe=False)
 
+#update 15-03-2021
+@csrf_exempt
+def applicantChangesPasswordApiView(request):
+    if request.method == 'POST':
+        try:
+            oldpassword = request.POST.get('oldPassword1')
+            newPassword = request.POST.get('newPassword1')
+            changesPasswordDb = ApplicantLoginDetail.objects.get(userID_id = request.user.pk)
+            if(changesPasswordDb.password != oldpassword):
+                return JsonResponse({'message': 'notMatch'}, safe=False)
+            else:
+                changesPasswordDb.password = newPassword
+                changesPasswordDb.save()
+                user = User.objects.get(pk = request.user.pk)
+                user.set_password(newPassword)
+                user.save()
+                return JsonResponse({'message': 'success'}, safe=False)
+        except:
+            return JsonResponse({'message': 'error'}, safe=False)

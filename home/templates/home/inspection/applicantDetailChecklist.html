@@ -20,7 +20,7 @@
         <p>Check list for Fresh Registration of Clinics under the Manipur Nursing Homes and Clinics RegistrationsAct,
             1992 (MNHCR Act).</p>
 
-
+<form  method="post"> {% csrf_token %}
         <table class="ui very padded table">
             <thead>
             <tr>
@@ -37,7 +37,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="forwardingLetter" value="False">
                         <label></label>
                     </div>
                 </td>
@@ -49,7 +49,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="formA">
                         <label></label>
                     </div>
                 </td>
@@ -68,7 +68,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="campus">
                         <label></label>
                     </div>
                 </td>
@@ -81,7 +81,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="stafflist">
                         <label></label>
                     </div>
                 </td>
@@ -106,7 +106,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="certificates">
                         <label></label>
                     </div>
                 </td>
@@ -126,7 +126,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="ratesOrTraffic">
                         <label></label>
                     </div>
                 </td>
@@ -139,7 +139,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"  id="rentCopy">
                         <label></label>
                     </div>
                 </td>
@@ -150,7 +150,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="appointmentOrder">
                         <label></label>
                     </div>
                 </td>
@@ -161,7 +161,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="acceptanceCertificate">
                         <label></label>
                     </div>
                 </td>
@@ -173,7 +173,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="methodOfWasteDisposal">
                         <label></label>
                     </div>
                 </td>
@@ -184,7 +184,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="mpcb">
                         <label></label>
                     </div>
                 </td>
@@ -195,7 +195,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="aerb">
                         <label></label>
                     </div>
                 </td>
@@ -206,7 +206,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="pndt">
                         <label></label>
                     </div>
                 </td>
@@ -221,7 +221,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="beds">
                         <label></label>
                     </div>
                 </td>
@@ -232,7 +232,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="epf">
                         <label></label>
                     </div>
                 </td>
@@ -244,7 +244,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="certifcateOfStaff">
                         <label></label>
                     </div>
                 </td>
@@ -257,7 +257,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="fire">
                         <label></label>
                     </div>
                 </td>
@@ -276,7 +276,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="operationTheater">
                         <label></label>
                     </div>
                 </td>
@@ -287,7 +287,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="equipments">
                         <label></label>
                     </div>
                 </td>
@@ -298,7 +298,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="emergencyMedicines">
                         <label></label>
                     </div>
                 </td>
@@ -309,7 +309,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="chemistShop">
                         <label></label>
                     </div>
                 </td>
@@ -320,7 +320,7 @@
                 </td>
                 <td>
                     <div class="ui toggle checkbox" >
-                        <input type="checkbox" name="public">
+                        <input type="checkbox"    id="professionalTax">
                         <label></label>
                     </div>
                 </td>
@@ -330,15 +330,15 @@
     <div class="ui form" style="width: 100%">
   <div class="field">
     <label>Any Remark</label>
-    <textarea rows="3"></textarea>
+    <textarea rows="3"  id="remarkByInspection"></textarea>
   </div>
 </div>
         <div class="field" style="margin-top: 10px;margin-bottom: 10px;width: 100%">
-                 <button onclick="forwardToRO()" class="fluid ui button primary">Verify and forward to RO</button>
+                 <button type="button" onclick="forwardToRO()" class="fluid ui button primary">Verify and forward to RO</button>
 
         </div>
-
-
+    <input type="hidden" id="applicantID" value="{{ instances.pk }}">
+</form>
     </div>
 
 
@@ -346,7 +346,7 @@
 {% endblock %}
 {% block myjs %}
     <script>
-        function UserValidation() {
+      {% comment %}  function UserValidation() {
             var name = $('#name').val();
             var email = $('#email').val();
             var phoneNumber = $('#phoneNumber').val();
@@ -404,10 +404,115 @@
         }
 
 
-
+{% endcomment %}
 
         function forwardToRO() {
-            $('#checkbox_ID').is(":checked")
+            var forwardingLetter = $('#forwardingLetter').is(":checked");
+            var formA = $('#formA').is(":checked");
+            var campus = $('#campus').is(":checked");
+            var stafflist = $('#stafflist').is(":checked");
+            var certificates = $('#certificates').is(":checked");
+            var ratesOrTraffic = $('#ratesOrTraffic').is(":checked");
+            var rentCopy = $('#rentCopy').is(":checked");
+            var appointmentOrder = $('#appointmentOrder').is(":checked");
+            var acceptanceCertificate = $('#acceptanceCertificate').is(":checked");
+            var methodOfWasteDisposal = $('#methodOfWasteDisposal').is(":checked");
+            var mpcb = $('#mpcb').is(":checked");
+            var aerb = $('#aerb').is(":checked");
+            var pndt = $('#pndt').is(":checked");
+            var beds = $('#beds').is(":checked");
+            var epf = $('#epf').is(":checked");
+            var certifcateOfStaff = $('#certifcateOfStaff').is(":checked");
+            var fire = $('#fire').is(":checked");
+            var operationTheater = $('#operationTheater').is(":checked");
+            var equipments = $('#equipments').is(":checked");
+            var emergencyMedicines = $('#emergencyMedicines').is(":checked");
+            var chemistShop = $('#chemistShop').is(":checked");
+            var professionalTax = $('#professionalTax').is(":checked");
+            var remarkByInspection = $('#remarkByInspection').val();
+            var applicantID = $('#applicantID').val();
+
+            var form_data = new FormData();
+            form_data.append('forwardingLetter', forwardingLetter);
+            form_data.append('formA', formA);
+            form_data.append('campus', campus);
+            form_data.append('stafflist', stafflist);
+            form_data.append('certificates', certificates);
+            form_data.append('ratesOrTraffic', ratesOrTraffic);
+            form_data.append('rentCopy', rentCopy);
+            form_data.append('appointmentOrder', appointmentOrder);
+            form_data.append('appointmentOrder', acceptanceCertificate);
+            form_data.append('methodOfWasteDisposal', methodOfWasteDisposal);
+            form_data.append('mpcb', mpcb);
+            form_data.append('aerb', aerb);
+            form_data.append('pndt', pndt);
+            form_data.append('beds', beds);
+            form_data.append('epf', epf);
+            form_data.append('certifcateOfStaff', certifcateOfStaff);
+            form_data.append('fire', fire);
+            form_data.append('operationTheater', operationTheater);
+            form_data.append('equipments', equipments);
+            form_data.append('emergencyMedicines', emergencyMedicines);
+            form_data.append('chemistShop', chemistShop);
+            form_data.append('professionalTax', professionalTax);
+            form_data.append('remarkByInspection', remarkByInspection);
+            form_data.append('applicantID', applicantID);
+            $.ajax({
+                type: 'post',
+                url: '{% url "homeApp:submit_checklist_applicant" %}',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.message === 'success') {
+                        $('body')
+                            .toast({
+                                class: 'success',
+                                title: 'Details verified and submitted to RO Successfully.',
+                                message: 'Upload Next .',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center'
+
+                            });
+                        window.location.href = "{% url 'homeApp:inspectionApprovedList' %}";
+                    }
+                    else if (response.message === 'error') {
+                        $('body')
+                            .toast({
+                                class: 'error',
+                                title: 'Error',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'grey',
+                                position: 'top center',
+
+                            });
+
+                    }
+                    else {
+                        $('body')
+                            .toast({
+                                class: 'warning',
+                                title: 'Something Went Wrong.',
+                                message: 'Please try again.',
+                                showProgress: 'bottom',
+                                classProgress: 'red',
+                                position: 'top center',
+
+                            });
+                    }
+
+                },
+                error: function (e) {
+
+                    console.log(e);
+                }
+            });
+
+
+
         }
 
     </script>
