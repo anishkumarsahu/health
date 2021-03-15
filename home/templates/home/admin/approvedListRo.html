@@ -1,0 +1,122 @@
+{% extends 'home/admin/roHomepage.html' %}
+{% load static %}
+{% block title %}
+    <title>User List</title>
+{% endblock %}
+{% block cssandjs %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.semanticui.min.css">
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.semanticui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+    <style>
+        #couponTable_filter {
+            position: absolute;
+            top: 1.5rem;
+            right: 2.6rem;
+        }
+
+        #couponTable_wrapper {
+            width: 100%;
+            margin-top: 0.2rem;
+        }
+
+        .selection.ui.dropdown {
+            margin-bottom: 1rem;
+        }
+
+        tr {
+            cursor: pointer;
+            transition: all .25s ease-in-out
+        }
+
+        .selected {
+            background-color: lightgray;
+            font-weight: bold;
+            color: black;
+        }
+
+        tr:hover, tr.selected {
+            background-color: #FFCF8B
+        }
+
+        td {
+            padding: 5px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <input type="hidden" id="coupId">
+    <div class="ui segment grid stackable padded">
+       <h4>Applicant Approved List</h4>
+    </div>
+    <div class="ui segment grid stackable padded">
+        <table id="couponTable" class="ui celled table"
+               style="text-align: center; font-size: 14px; width: 100%!important;">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>EnrollmentNumber</th>
+                <th>Category</th>
+                <th>Sub Category</th>
+                <th>Date Of Submit</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody style="font-size: 13px; line-height: 0em;">
+            <tr>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>EnrollmentNumber</th>
+                <th>Category</th>
+                <th>Sub Category</th>
+                <th>Date Of Submit</th>
+                <th>Action</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}
+
+    {% block myjs %}
+        <script>
+            var coupTab;
+            $("tr").click(function () {
+                $(this).addClass("selected").siblings().removeClass("selected");
+            });
+            $(document).ready(function () {
+                coupTab = $('#couponTable').DataTable({
+                    dom: 'Blfrtip',
+                    buttons: [{
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    }, {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    }
+                    ],
+                    "columnDefs": [
+                        {"name": "name", "targets": 0, "orderable": true},
+                        {"name": "enrollmentNumber", "targets": 1, "orderable": true},
+                        {"name": "typeOfApplicationCategory", "targets": 2, "orderable": true},
+                        {"name": "typeOfApplicationSubCategory", "targets": 3, "orderable": true},
+                        {"name": "datetime", "targets": 4, "orderable": true},
+                        {"name": "action", "targets": 5, "orderable": false},
+                    ],
+                    aaSorting: [[0, 'asc']],
+                    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                    "pageLength": 10,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": "{% url 'homeApp:RoApprovalListJson' %}"
+                });
+                // ...
+            });
+        </script>
+    {% endblock %}
