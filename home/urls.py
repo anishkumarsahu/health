@@ -65,6 +65,10 @@ urlpatterns = [
     path('CampusDetailsApiView/', CampusDetailsApiView, name='CampusDetailsApiView'),
 # END UPDATE
 # 15-03-2021 UPDATE
+    path('download_certificate/',download_certificate,name='download_certificate'),
     path('applicantProfile/',applicantProfile,name='applicantProfile'),
     path('applicantChangesPasswordApiView/',applicantChangesPasswordApiView,name='applicantChangesPasswordApiView'),
+
+
+    path('RenewalPaymentRequestApiView/',RenewalPaymentRequestApiView,name='RenewalPaymentRequestApiView'),
 ]

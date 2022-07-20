@@ -208,7 +208,7 @@
                                 <i class="icon clipboard list "></i>
                             </div>
                             <div class="header">
-                                <div class="ui header green">500</div>
+                                <div class="ui header green">{{ total }}</div>
                             </div>
                             <div class="meta">
                                 Total Applicant
@@ -228,7 +228,7 @@
                                 <i class="icon clipboard check"></i>
                             </div>
                             <div class="header">
-                                <div class="ui teal header">200</div>
+                                <div class="ui teal header">{{ total_v }}</div>
                             </div>
                             <div class="meta">
                                 Verified Applicant
@@ -248,7 +248,7 @@
                                 <i class="icon clipboard"></i>
                             </div>
                             <div class="header">
-                                <div class="ui purple header">300</div>
+                                <div class="ui purple header">{{ total_p }}</div>
                             </div>
                             <div class="meta">
                                 Pending Applicant
@@ -262,50 +262,7 @@
                     </div>
                 </div>
             </div>
-            <!--Tables Area-->
-            <div class="ui grid stackable padded">
-                <div class="eight wide computer eight wide tablet sixteen wide mobile column">
-                    <i class="money bill alternate icon"></i>Latest 10 Orders
-                    <a href="#"><i class="clipboard icon"></i> All Orders</a>
-                    <table class="ui very compact table" id="AdminOrderTable"
-                           style="text-align: center; font-size: 14px; width: 100%!important;">
-                        <thead>
-                        <tr>
-                            <th>OrderID</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                            <th>DateTime</th>
-                            <th>Total</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="eight wide computer eight wide tablet sixteen wide mobile column">
-                    <i class="user friends icon"></i>Latest 10 Registrations
-                    <a href="#"> <i class="users icon"></i>All Customers</a>
-                    <table class="ui very compact table" id="ACustomerTable"
-                           style="text-align: center; font-size: 14px; width: 100%!important;">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Email</th>
-                            <th>Group</th>
-                            <th>DateTime</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+
 
         {% endblock %}
 

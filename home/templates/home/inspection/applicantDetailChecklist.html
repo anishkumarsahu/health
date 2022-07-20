@@ -5,11 +5,11 @@
 {% endblock %}
 {% block customCss %}
     <style>
-    .ui.piled.segment, .ui.piled.segments {
-    margin: 1em 0;
+        .ui.piled.segment, .ui.piled.segments {
+            margin: 1em 0;
 
-    z-index: auto;
-}
+            z-index: auto;
+        }
     </style>
 {% endblock %}
 {% block body %}
@@ -20,392 +20,365 @@
         <p>Check list for Fresh Registration of Clinics under the Manipur Nursing Homes and Clinics RegistrationsAct,
             1992 (MNHCR Act).</p>
 
-<form  method="post"> {% csrf_token %}
-        <table class="ui very padded table">
-            <thead>
-            <tr>
-                <th>Sl. No.</th>
-                <th>Documents/Certificates/Information</th>
-                <th>Submitted <br>(Yes/No)</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
+        <form method="post"> {% csrf_token %}
+            <table class="ui very padded table">
+                <thead>
+                <tr>
+                    <th>Sl. No.</th>
+                    <th>Documents/Certificates/Information</th>
+                    <th>Submitted <br>(Yes/No)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
 
-                <td>Forwarding letter to the Director of Heath Services
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="forwardingLetter" value="False">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
+                    <td>Forwarding letter to the Director of Heath Services
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="forwardingLetter" value="False">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
 
-                <td>Form - A
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="formA">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
+                    <td>Form - A
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="formA">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
 
-                <td>Campus
-                    <ol style="list-style-type:upper-roman">
-                        <li>Parking space - Description</li>
-                        <li>Building Structure - pucca, semi-pucca etc</li>
-                        <li>Number of floor</li>
-                        <li>Number of rooms used , area of rooms</li>
-                        <li>Schematic diagram of floor wise rooms with labelling.</li>
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="campus">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Staff list
-                    <br>
-                    (Separate list for doctors, nurses and other staffs etc.)
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="stafflist">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Academic Qualification Certificates & Registration Certificates
-                    (MMC for Doctors, Dental Tribunal for Dental Surgeons and MNC
-                    for nurses)
-                    <ol style="list-style-type:upper-roman">
-                        <li>Proprietor</li>
-                        <li>Managerial staffs</li>
-                        <li>Doctors</li>
-                        <li>Nurses</li>
-                        <li> Laboratory Technician</li>
-                        <li>Radiology Technicians</li>
-                        <li>Dialysis Technicians</li>
-                        <li>Pharmacist</li>
-                        <li>Ophthalmic Asst./Optometrist</li>
-                        <li>Physiotherapist</li>
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="certificates">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Rates/Tariff
-                    <ol style="list-style-type:upper-roman">
-                        <li>OPD</li>
-                        <li>General wards</li>
-                        <li>Special/Paying accommodation</li>
-                        <li>Treatment charges</li>
-                        <li>Laboratory Investigations, X-ray etc.</li>
-                        <li>Others if any</li>
+                    <td>Campus
+                        <ol style="list-style-type:upper-roman">
+                            <li>Parking space - Description</li>
+                            <li>Building Structure - pucca, semi-pucca etc</li>
+                            <li>Number of floor</li>
+                            <li>Number of rooms used , area of rooms</li>
+                            <li>Schematic diagram of floor wise rooms with labelling.</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="campus">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Staff list
+                        <br>
+                        (Separate list for doctors, nurses and other staffs etc.)
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="stafflist">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Academic Qualification Certificates & Registration Certificates
+                        (MMC for Doctors, Dental Tribunal for Dental Surgeons and MNC
+                        for nurses)
+                        <ol style="list-style-type:upper-roman">
+                            <li>Proprietor</li>
+                            <li>Managerial staffs</li>
+                            <li>Doctors</li>
+                            <li>Nurses</li>
+                            <li> Laboratory Technician</li>
+                            <li>Radiology Technicians</li>
+                            <li>Dialysis Technicians</li>
+                            <li>Pharmacist</li>
+                            <li>Ophthalmic Asst./Optometrist</li>
+                            <li>Physiotherapist</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="certificates">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Rates/Tariff
+                        <ol style="list-style-type:upper-roman">
+                            <li>OPD</li>
+                            <li>General wards</li>
+                            <li>Special/Paying accommodation</li>
+                            <li>Treatment charges</li>
+                            <li>Laboratory Investigations, X-ray etc.</li>
+                            <li>Others if any</li>
 
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="ratesOrTraffic">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Rent affidavit from the land owner /
-                    Copy of Patta, if the applicant owns the land.
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="ratesOrTraffic">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Rent affidavit from the land owner /
+                        Copy of Patta, if the applicant owns the land.
 
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"  id="rentCopy">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Appointment order with nature of employment
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="appointmentOrder">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Acceptance Certificate by the staff
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="acceptanceCertificate">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Method of Bio-Medical Waste Disposal/
-                    Certificate from CBWTF.
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="methodOfWasteDisposal">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>MPCB Consent to operatelestablish, Authorization certificate
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="mpcb">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>12</td>
-                <td>AERB Authorization for X-Ray, CT-Scan & MRI installation.
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="aerb">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>13</td>
-                <td>(PC)PNDT certificate from FW dept. for USG installation.
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="pndt">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>14</td>
-                <td>Number of beds
-                    <ol style="list-style-type:upper-roman">
-                        <li>Maternity</li>
-                        <li>Others</li>
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="beds">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td>EPF scheme application (> 20 staffs )
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="epf">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>16</td>
-                <td>Issue a Certificate for Non-Forfeiture of Original Certificates of
-                    the staffs
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="certifcateOfStaff">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>17</td>
-                <td>Fire Safety System adopted including escape door, stairs,
-                    signage etc. No Objection Certificate from the Fire Service
-                    Dept.
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="fire">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>18</td>
-                <td>Operation Theatre:
-                    <ol style="list-style-type:upper-roman">
-                        <li>outlay</li>
-                        <li>Zones</li>
-                        <li>number</li>
-                        <li>major/minor,</li>
-                        <li>equipments list of O.T.</li>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="rentCopy">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Appointment order with nature of employment
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="appointmentOrder">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Acceptance Certificate by the staff
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="acceptanceCertificate">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Method of Bio-Medical Waste Disposal/
+                        Certificate from CBWTF.
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="methodOfWasteDisposal">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>MPCB Consent to operatelestablish, Authorization certificate
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="mpcb">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>AERB Authorization for X-Ray, CT-Scan & MRI installation.
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="aerb">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>(PC)PNDT certificate from FW dept. for USG installation.
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="pndt">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Number of beds
+                        <ol style="list-style-type:upper-roman">
+                            <li>Maternity</li>
+                            <li>Others</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="beds">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>EPF scheme application (> 20 staffs )
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="epf">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Issue a Certificate for Non-Forfeiture of Original Certificates of
+                        the staffs
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="certifcateOfStaff">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Fire Safety System adopted including escape door, stairs,
+                        signage etc. No Objection Certificate from the Fire Service
+                        Dept.
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="fire">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Operation Theatre:
+                        <ol style="list-style-type:upper-roman">
+                            <li>outlay</li>
+                            <li>Zones</li>
+                            <li>number</li>
+                            <li>major/minor,</li>
+                            <li>equipments list of O.T.</li>
 
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="operationTheater">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>19</td>
-                <td>Equipments list of other specialties
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="equipments">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>20</td>
-                <td>Availability of emergency medicines
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="emergencyMedicines">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>21</td>
-                <td>Availability of round the clock chemist shop
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="chemistShop">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>22</td>
-                <td>Professional Tax
-                </td>
-                <td>
-                    <div class="ui toggle checkbox" >
-                        <input type="checkbox"    id="professionalTax">
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    <div class="ui form" style="width: 100%">
-  <div class="field">
-    <label>Any Remark</label>
-    <textarea rows="3"  id="remarkByInspection"></textarea>
-  </div>
-</div>
-        <div class="field" style="margin-top: 10px;margin-bottom: 10px;width: 100%">
-                 <button type="button" onclick="forwardToRO()" class="fluid ui button primary">Verify and forward to RO</button>
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="operationTheater">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Equipments list of other specialties
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="equipments">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Availability of emergency medicines
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="emergencyMedicines">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>Availability of round the clock chemist shop
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="chemistShop">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>Professional Tax
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="professionalTax">
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="ui segment" style="background-color: beige">
+                <div class="ui form" style="width: 100%">
+                 <div class="field">
+                        <label>Application Facilities</label>
+                        <select name="skills" multiple="" class="ui fluid dropdown" id="aFacilities">
+                            <option value="">Select Facilities</option>
 
-        </div>
-    <input type="hidden" id="applicantID" value="{{ instances.pk }}">
-</form>
+                            {% for f in facilities %}
+                                <option value="{{ f.pk }}">{{ f.name }}</option>
+                            {% endfor %}
+
+
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Application Status</label>
+                        <select class="ui selection dropdown" name="aStatus" id="aStatus">
+                            <option value="">Select Status</option>
+                            {% for status in status %}
+                                <option value="{{ status.pk }}">{{ status.status }}</option>
+                            {% endfor %}
+
+
+                        </select>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Remark to Applicant:</label>
+                            <textarea rows="3" id="eRemark"></textarea>
+                        </div>
+                        <div class="field">
+                            <label>Internal Remark:</label>
+                            <textarea rows="3" id="iRemark"></textarea></div>
+                    </div>
+                </div>
+            </div>
+            <div class="field" style="margin-top: 10px;margin-bottom: 10px;width: 100%">
+
+
+                <button type="button" onclick="forwardToRO()" class="fluid ui button primary">Verify and forward to RO
+                </button>
+
+            </div>
+            <input type="hidden" id="applicantID" value="{{ instances.pk }}">
+        </form>
     </div>
-
 
 
 {% endblock %}
 {% block myjs %}
     <script>
-      {% comment %}  function UserValidation() {
-            var name = $('#name').val();
-            var email = $('#email').val();
-            var phoneNumber = $('#phoneNumber').val();
-            var password = $('#password').val();
-            var userType = $('#userType').val();
-            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-            if (reg.test(email) == false) {
-                $('body')
-                    .toast({
-                        class: 'error',
-                        title: 'Invalid Email.',
-                        message: 'Please try again.',
-                        showProgress: 'bottom',
-                        classProgress: 'white',
-                        position: 'top center',
-
-                    });
-                return false;
-            }
-            else {
-                if (name !== '' && email !== '' && phoneNumber !== '' && password !== ''
-                    && userType !== '') {
-                    successTost("Successfully");
-                    $('#addUserForm').submit();
-                }
-                else {
-                    alertTost("Please fill all the details correctly.");
-                }
-            }
-        }
-        function alertTost(x) {
-            $('body')
-                .toast({
-                    class: 'warning',
-                    title: 'All Fields Requires',
-                    message: x,
-                    showProgress: 'bottom',
-                    classProgress: 'red',
-                    position: 'top center',
-                })
-            ;
-        }
-
-        function successTost(x) {
-            $('body')
-                .toast({
-                    class: 'success',
-                    title: 'Form Submit',
-                    message: x,
-                    showProgress: 'bottom',
-                    classProgress: 'green',
-                    position: 'top center',
-                })
-            ;
-        }
-
-
-{% endcomment %}
-
         function forwardToRO() {
             var forwardingLetter = $('#forwardingLetter').is(":checked");
             var formA = $('#formA').is(":checked");
@@ -429,8 +402,12 @@
             var emergencyMedicines = $('#emergencyMedicines').is(":checked");
             var chemistShop = $('#chemistShop').is(":checked");
             var professionalTax = $('#professionalTax').is(":checked");
-            var remarkByInspection = $('#remarkByInspection').val();
+
             var applicantID = $('#applicantID').val();
+            var iRemark = $('#iRemark').val();
+            var eRemark = $('#eRemark').val();
+            var aStatus = $('#aStatus').val();
+            var aFacilities = $('#aFacilities').val();
 
             var form_data = new FormData();
             form_data.append('forwardingLetter', forwardingLetter);
@@ -455,8 +432,11 @@
             form_data.append('emergencyMedicines', emergencyMedicines);
             form_data.append('chemistShop', chemistShop);
             form_data.append('professionalTax', professionalTax);
-            form_data.append('remarkByInspection', remarkByInspection);
             form_data.append('applicantID', applicantID);
+            form_data.append('iRemark', iRemark);
+            form_data.append('eRemark', eRemark);
+            form_data.append('aStatus', aStatus);
+            form_data.append('aFacilities', aFacilities);
             $.ajax({
                 type: 'post',
                 url: '{% url "homeApp:submit_checklist_applicant" %}',
@@ -510,7 +490,6 @@
                     console.log(e);
                 }
             });
-
 
 
         }

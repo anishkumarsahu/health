@@ -8,6 +8,7 @@
 {% endblock %}
 {% block body %}
     <div class="ui container">
+    {% if instances.isDetailCompletelySubmitted == True %}
         <div class="ui segment" style="font-family: monospace; text-align: left">
             <div class="ui segment">
                 <div class="ui raised segment">
@@ -55,13 +56,25 @@
 
                         <div class="field">
                             <h4 class="ui header">III. AERB Authorization for X-Ray, CT-Scan & MRI installation</h4>
-                            <p>Download Document <a href="{{ applicant_other_details.AERBFile.url }}"
+        {% if  applicant_other_details.AERBFile %}
+        <p>Download Document <a href="{{ applicant_other_details.AERBFile.url }}"
                                                     download>DOWNLOAD</a></p>
+                            {% else %}
+                        <p>File Not Available </p>
+
+
+                    {% endif %}
                         </div>
                         <div class="field">
                             <h4 class="ui header">IV. (PC)PNDT certificate from FW dept. for USG installation</h4>
+                            {% if  applicant_other_details.PNDTFile %}
                             <p>Download Document <a href="{{ applicant_other_details.PNDTFile.url }}"
                                                     download>DOWNLOAD</a></p>
+                                {% else %}
+                        <p>File Not Available </p>
+
+
+                    {% endif %}
                         </div>
                         <div class="field">
                             <h4 class="ui header">V. EPF scheme application (>20 staffs)</h4>
@@ -330,21 +343,97 @@
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="ui segment">
-            <h4 class="ui dividing header">Progress Bar For Form A Submitted on 20/03/2021</h4>
-            <div class="ui active blue indeterminate progress">
-                <div class="bar">
-                    <div class="progress"></div>
+
+            <div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">Payment Details.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+                            <thead>
+                            <tr>
+                                <th>Amount</th>
+                                <th>Transaction ID</th>
+                                <th>Transaction Date</th>
+                                <th>Receipt</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in trans %}
+                                <tr>
+                                    <td>{{ c.amount }}</td>
+                                    <td>{{ c.transactionID }}</td>
+                                    <td>{{ c.transactionDate }}</td>
+                                    <td><a href="{{ c.receiptFile.url }}" download>DOWNLOAD</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="label">Please Wait While The Reviewing Process is Complete</div>
+                     <div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">RenewalPayment Details.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+                            <thead>
+                            <tr>
+                                <th>Amount</th>
+                                <th>Transaction ID</th>
+                                <th>Transaction Date</th>
+                                <th>Receipt</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in renewal %}
+                                <tr>
+                                    <td>{{ c.amount }}</td>
+                                    <td>{{ c.transactionID }}</td>
+                                    <td>{{ c.transactionDate }}</td>
+                                    <td><a href="{{ c.receiptFile.url }}" download>DOWNLOAD</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+<div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">Application Status.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+                            <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Applicant Remark</th>
+                                <th>Datetime</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in formStatus %}
+                                <tr>
+                                    <td>{{ c.statusID.status }}</td>
+                                    <td>{{ c.applicant_remark }}</td>
+                                    <td>{{ c.datetime }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+        {% if instances.applicationStatus == "Approved" %}
         <div class="ui segment">
             <h4 class="ui dividing header">Download Certificate</h4>
-            <button class="ui primary elastic loading button">Loading</button>
+            <a href="{% url 'homeApp:download_certificate' %}" class="ui primary  button">Download Now</a>
         </div>
+            {% endif %}
+    {% else %}
+    <div class="ui segment">
+            <h4 class="ui dividing header">You haven't Completed your registration.</h4>
+            <a href="{% url 'homeApp:registrationformA' %}" class="ui primary  button">Apply Now</a>
+        </div>
+    {% endif %}
 
     </div>
     <script>

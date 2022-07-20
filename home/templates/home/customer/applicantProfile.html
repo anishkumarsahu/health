@@ -4,18 +4,28 @@
     <title>Applicant Profile</title>
 {% endblock %}
 {% block js %}
-
+ <style>
+    .customAction{
+            background: #f9fafb;
+    padding: 1rem 1rem;
+    border-top: 1px solid rgba(34,36,38,.15);
+    text-align: right;
+    }
+    </style>
 {% endblock %}
 {% block body %}
     <div class="ui container">
         <div class="ui segment">
             <img class="ui centered small circular image" src="{% static 'images/user.png' %}">
             <h5 class="ui header">USER NAME: {{ instances.email|upper }}</h5>
+            <h5 class="ui header">Registration No.:{{ applicant.enrollmentNumber }}</h5>
+{#            <h5 class="ui header">Date of Registration: 14/03/2021</h5>#}
+{#            <h5 class="ui header">Date of issue of Certificate: 15/03/2021</h5>#}
+{#            <h5 class="ui header">This Certificate shall be valid till 31st March, 2023 </h5>#}
             <button onclick="changesPasswordPopUp()" class="ui basic button"><i class="unlock alternate icon"></i>CHANGES
                 PASSWORD
             </button>
-            <button onclick="changesPasswordPopUp()" class="ui basic button"><i class="arrow circle down icon"></i>DOWNLOAD
-                CERTIFICATE
+            <button onclick="renew()" class="ui basic button green"><i class="history icon"></i>RENEW NOW
             </button>
         </div>
         <div class="ui modal" id="profileChangesPassword">
@@ -57,12 +67,90 @@
             </div>
         </div>
     </div>
+
+ <div class="ui modal" id="MakeRenewal">
+        <i class="close icon"></i>
+        <div class="header">
+            Complete renewal payment
+        </div>
+        <div class="image content">
+
+            <div class="description">
+                <p>Please make a payment of <b>₹ <span class="totalAmountToBePaid">{{ applicant.payableAmount }}</span></b> to complete the renewal process
+                    <a href="https://egrasmanipur.nic.in/" target="_blank" style="cursor:pointer;"> <button class="ui tiny primary button">here </button></a> and submit the transaction details.
+                    <br>
+                Note: Please Don't exit the existing page before submitting payment details.
+                </p>
+                <form class="ui form" action="">
+                    <div class="ui segment">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Amount Deposited:</label>
+                                <input type="text" name="depositAmount" id="depositAmount"
+                                       placeholder="Amount Deposited"
+                                       autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label>Transaction ID: </label>
+                                <input type="number" name="depositTransactionID" id="depositTransactionID"
+                                       placeholder="Transaction ID" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Transaction Date: </label>
+                                <div class="ui calendar" id="transactionDate">
+                                    <div class="ui input left icon">
+                                        <i class="calendar icon"></i>
+                                        <input type="text" placeholder="Transaction Date" id="tDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Deposit Receipt:</label>
+                                <input type="file" placeholder="Deposit Receipt" id="depositReceipt">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="customAction">
+            <div class="ui black deny button close" onclick="closeModal()">
+                Cancel
+            </div>
+            <button class="ui positive right labeled icon button" onclick="submitForApproval()">
+                Confirm Payment
+                <i class="checkmark icon"></i>
+            </button>
+        </div>
+    </div>
     <script>
         function changesPasswordPopUp() {
             $('#profileChangesPassword')
                 .modal('show')
             ;
+        } function renew() {
+            $('#MakeRenewal')
+                .modal('show')
+            ;
         }
+        $('#transactionDate').calendar({
+            type: 'date',
+            formatter: {
+                date: function (date, settings) {
+                    if (!date) return '';
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                    return day + '/' + month + '/' + year;
+                }
+            },
+            popupOptions: {
+                observeChanges: false
+            }
+        });
 
         function ChangesPasswordSubmit() {
             var oldPassword1 = $('#oldPassword').val();
@@ -154,6 +242,97 @@
                 });
             }
         }
+
+
+           function closeModal() {
+            $('#MakeRenewal').modal('hide')
+            ;
+        }
+        function submitForApproval() {
+            var depositAmount = $('#depositAmount').val();
+            var depositTransactionID = $('#depositTransactionID').val();
+            var tDate = $('#tDate').val();
+            var depositReceipt = document.getElementById("depositReceipt").files[0];
+            if (depositAmount !== '' && depositTransactionID !== '' && tDate !== '' &&
+                depositReceipt !== undefined) {
+                var form_data = new FormData();
+                form_data.append('depositAmount', depositAmount);
+                form_data.append('depositTransactionID', depositTransactionID);
+                form_data.append('tDate', tDate);
+                form_data.append('depositReceipt', depositReceipt);
+
+                $.ajax({
+                    type: 'post',
+                    url: '{% url "homeApp:RenewalPaymentRequestApiView" %}',
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.message === 'success') {
+                            $('body')
+                                .toast({
+                                    class: 'success',
+                                    title: 'Renewal detail submitted Successfully.',
+                                    message: 'Success.',
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                            closeModal();
+                            window.location.href = "{% url 'homeApp:applicantDashboard' %}"
+                        }
+                        else if (response.message === 'error') {
+                            $('body')
+                                .toast({
+                                    class: 'error',
+                                    title: 'Error',
+                                    message: 'Please try again.',
+                                    showProgress: 'bottom',
+                                    classProgress: 'grey',
+                                    position: 'top center',
+
+                                });
+
+                        }
+                        else {
+                            $('body')
+                                .toast({
+                                    class: 'warning',
+                                    title: 'Something Went Wrong.',
+                                    message: 'Please try again.',
+                                    showProgress: 'bottom',
+                                    classProgress: 'red',
+                                    position: 'top center',
+
+                                });
+                        }
+
+                    },
+                    error: function (e) {
+
+                        console.log(e);
+                    }
+                });
+
+            }
+            else {
+                $('body')
+                    .toast({
+                        class: 'warning',
+                        title: 'Fields Requires',
+                        message: 'All fields are required',
+                        showProgress: 'bottom',
+                        classProgress: 'red',
+                        position: 'top center',
+
+                    })
+                ;
+
+            }
+        }
+
     </script>
 {% endblock %}
 {% block mainBody %}

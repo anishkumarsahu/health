@@ -4,12 +4,15 @@ from django.contrib.auth.models import User, Group
 from django.db.models import Q
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from functools import wraps
 from html import escape
 
 import datetime
+
+from weasyprint import HTML, CSS
 
 from .models import *
 
@@ -95,9 +98,17 @@ def logout_user(request):
 @check_group('RO')
 def roHome(request):
     user_count = AdminUser.objects.filter(isDeleted__exact=False).count()
+    total = Applicant.objects.filter(isDeleted__exact=False, isDetailCompletelySubmitted__exact=True).count()
+    total_p = Applicant.objects.filter(isDeleted__exact=False, isCheckedByInspector__exact=True, isApproved__exact=False,
+                                       isDetailCompletelySubmitted__exact=True).count()
+    total_v = Applicant.objects.filter(isDeleted__exact=False, isApproved__exact=True,
+                                       isDetailCompletelySubmitted__exact=True).count()
 
     context = {
-        'user_count':user_count
+        'user_count':user_count,
+        'total':total,
+        'total_p':total_p,
+        'total_v':total_v
     }
     return render(request, 'home/admin/roHomepage.html', context)
 
@@ -260,11 +271,20 @@ def applicant_form_detail_ro(request, id=None):
     applicant_person_employed = ApplicantPersonEmployed.objects.filter(applicantID_id=instance.pk)
     applicant_doctor_staff = ApplicantDoctorStaff.objects.filter(applicantID_id=instance.pk)
     applicant_nurse_staff = ApplicantNurseStaff.objects.filter(applicantID_id=instance.pk)
+    trans = ApplicationTransactionDetail.objects.filter(applicantID_id=instance.pk)
+    formStatus = ApplicationStatus.objects.filter(applicantID_id=instance.pk)
+    facilities = ApplicantFacilities.objects.filter(applicantID_id=instance.pk)
+    renewal = ApplicationRenewalTransactionDetail.objects.filter(applicantID_id=instance.pk)
+
     context = {
         'instances': instance,
         'applicantPersonEmployer': applicant_person_employed,
         'applicantDoctorStaff': applicant_doctor_staff,
-        'applicantNurseStaff': applicant_nurse_staff
+        'applicantNurseStaff': applicant_nurse_staff,
+        'trans':trans,
+        'formStatus':formStatus,
+        'facilities':facilities,
+        'renewal':renewal
     }
     return render(request, 'home/admin/applicantFormDetailRo.html', context)
 
@@ -273,11 +293,18 @@ def applicant_form_detail(request,id=None):
     applicant_person_employed = ApplicantPersonEmployed.objects.filter(applicantID_id = instance.pk)
     applicant_doctor_staff = ApplicantDoctorStaff.objects.filter(applicantID_id=instance.pk)
     applicant_nurse_staff = ApplicantNurseStaff.objects.filter(applicantID_id = instance.pk)
+    trans = ApplicationTransactionDetail.objects.filter(applicantID_id=instance.pk)
+    formStatus = ApplicationStatus.objects.filter(applicantID_id=instance.pk)
+    renewal = ApplicationRenewalTransactionDetail.objects.filter(applicantID_id=instance.pk)
+
     context = {
         'instances': instance,
         'applicantPersonEmployer': applicant_person_employed,
         'applicantDoctorStaff': applicant_doctor_staff,
-        'applicantNurseStaff': applicant_nurse_staff
+        'applicantNurseStaff': applicant_nurse_staff,
+        'trans':trans,
+        'formStatus':formStatus,
+        'renewal':renewal
     }
     return render(request, 'home/admin/applicantFormDetail.html',context)
 
@@ -287,9 +314,12 @@ def applicant_form_detail(request,id=None):
 def after_verify_applicant_checklist_ro(request, id=None):
     instance = get_object_or_404(Applicant, id=id)
     checklist=get_object_or_404(ApplicantCheckList, applicantID_id = instance.pk )
+    status = Status.objects.all().order_by('status')
+
     context = {
         'instances': instance,
-        'checklist':checklist
+        'checklist':checklist,
+        'status':status
     }
     return render(request, 'home/admin/applicantDetailChecklistAfterVerifyRo.html', context)
 
@@ -298,28 +328,40 @@ def approve_and_issue_certificate_to_applicant(request):
     if request.method == 'POST':
         try:
 
-            remarkByRO = request.POST.get('remarkByRO')
             applicantID = request.POST.get('applicantID')
             startDate = request.POST.get('startDate')
             endDate = request.POST.get('endDate')
+            aStatus = request.POST.get('aStatus')
+            eRemark = request.POST.get('eRemark')
+            iRemark = request.POST.get('iRemark')
 
             check = ApplicantCheckList.objects.get(applicantID_id= int(applicantID))
             ad = AdminUser.objects.get(userID_id=request.user.pk)
             check.approvedBy_id = ad.pk
-            check.remarkByRo = remarkByRO
             ap = Applicant.objects.get(pk = int(applicantID))
             ap.isApproved = True
             ap.approvedBy_id = ad.pk
-            c = Certificate()
-            c.approvedBy_id = ad.pk
-            c.remark = remarkByRO
-            c.approvedBy_id = int(applicantID)
-            c.startDate = datetime.strptime(startDate, '%d/%m/%Y')
-            c.endDate = datetime.strptime(endDate, '%d/%m/%Y')
+
+
+            if aStatus == '4':
+                c = Certificate()
+                c.applicantID_id = ap.pk
+                c.approvedBy_id = ad.pk
+                c.approvedBy_id = int(applicantID)
+                c.startDate = datetime.datetime.strptime(startDate, '%d/%m/%Y')
+                c.endDate = datetime.datetime.strptime(endDate, '%d/%m/%Y')
+                c.save()
+            statusDetail = ApplicationStatus()
+            statusDetail.applicantID_id = ap.pk
+            statusDetail.applicant_remark = eRemark
+            statusDetail.admin_remark = iRemark
+            statusDetail.statusID_id = int(aStatus)
+            statusDetail.createdBy = request.user.username
+            statusDetail.save()
+            sta = Status.objects.get(pk=int(aStatus))
+            ap.applicationStatus = sta.status
             ap.save()
             check.save()
-            c.save()
-
             return JsonResponse({'message': 'success'})
         except:
             return JsonResponse({'message': 'error'})
@@ -421,7 +463,11 @@ def applicant_form_detail_inspection(request, id=None):
     applicant_doctor_staff = ApplicantDoctorStaff.objects.filter(applicantID_id=instance.pk)
     applicant_nurse_staff = ApplicantNurseStaff.objects.filter(applicantID_id=instance.pk)
     applicant_campus = Campus.objects.get(applicantID_id=instance.pk)
-    applicant_other_details = CheckListOtherDetails.objects.get(applicantID_id=instance.pk)
+    applicant_other_details = CheckListOtherDetails.objects.filter(applicantID_id=instance.pk)
+    trans = ApplicationTransactionDetail.objects.filter(applicantID_id=instance.pk)
+    formStatus = ApplicationStatus.objects.filter(applicantID_id=instance.pk)
+    facilities = ApplicantFacilities.objects.filter(applicantID_id=instance.pk)
+    renewal = ApplicationRenewalTransactionDetail.objects.filter(applicantID_id=instance.pk)
 
     context = {
         'instances': instance,
@@ -430,6 +476,10 @@ def applicant_form_detail_inspection(request, id=None):
         'applicantNurseStaff': applicant_nurse_staff,
         'applicant_campus': applicant_campus,
         'applicant_other_details': applicant_other_details,
+        'trans':trans,
+        'formStatus':formStatus,
+        'facilities':facilities,
+        'renewal':renewal
     }
     return render(request, 'home/inspection/applicantFormDetailInspection.html', context)
 
@@ -445,8 +495,12 @@ def inspectionApprovedList(request):
 @check_group('Inspection')
 def verify_applicant_checklist_inspection(request, id=None):
     instance = get_object_or_404(Applicant, id=id)
+    status = Status.objects.all().order_by('status')
+    facilities = Facilities.objects.filter(isDeleted__exact=False).order_by('name')
     context = {
         'instances': instance,
+        'status':status,
+        'facilities':facilities
     }
     return render(request, 'home/inspection/applicantDetailChecklist.html', context)
 
@@ -487,8 +541,12 @@ def submit_checklist_applicant(request):
             emergencyMedicines = request.POST.get('emergencyMedicines')
             chemistShop = request.POST.get('chemistShop')
             professionalTax = request.POST.get('professionalTax')
-            remarkByInspection = request.POST.get('remarkByInspection')
+
             applicantID = request.POST.get('applicantID')
+            iRemark = request.POST.get('iRemark')
+            eRemark = request.POST.get('eRemark')
+            aStatus = request.POST.get('aStatus')
+            aFacilities = request.POST.getlist('aFacilities')
 
             check = ApplicantCheckList()
             check.forwardingLetter = bool(forwardingLetter)
@@ -513,15 +571,33 @@ def submit_checklist_applicant(request):
             check.emergencyMedicines = bool(emergencyMedicines)
             check.chemistShop = bool(chemistShop)
             check.professionalTax = bool(professionalTax)
-            check.remarkByInspection = remarkByInspection
             check.applicantID_id = int(applicantID)
             ad = AdminUser.objects.get(userID_id=request.user.pk)
             check.verifiedBy_id = ad.pk
             ap = Applicant.objects.get(pk = int(applicantID))
             ap.isCheckedByInspector = True
             ap.checkedBy_id = ad.pk
+            statusDetail = ApplicationStatus()
+            statusDetail.applicantID_id = int(applicantID)
+            statusDetail.applicant_remark = eRemark
+            statusDetail.admin_remark = iRemark
+            statusDetail.statusID_id = int(aStatus)
+            statusDetail.createdBy = request.user.username
+            statusDetail.save()
+            sta = Status.objects.get(pk = int(aStatus))
+            ap.applicationStatus = sta.status
+
+            faci = ApplicantFacilities.objects.filter(applicantID_id=int(applicantID))
+            faci.delete()
+            for f in aFacilities[0].split(","):
+                new_faci = ApplicantFacilities()
+                new_faci.applicantID_id = int(applicantID)
+                new_faci.facilitiesID_id = f
+                new_faci.save()
+
             ap.save()
             check.save()
+
             return JsonResponse({'message': 'success'})
         except:
             return JsonResponse({'message': 'error'})
@@ -611,7 +687,11 @@ def applicantDashboard(request):
     applicant_doctor_staff = ApplicantDoctorStaff.objects.filter(applicantID_id=instance.pk)
     applicant_nurse_staff = ApplicantNurseStaff.objects.filter(applicantID_id=instance.pk)
     applicant_campus = Campus.objects.get(applicantID_id=instance.pk)
-    applicant_other_details = CheckListOtherDetails.objects.get(applicantID_id = instance.pk)
+    applicant_other_details = CheckListOtherDetails.objects.filter(applicantID_id = instance.pk)
+    trans = ApplicationTransactionDetail.objects.filter(applicantID_id = instance.pk)
+    formStatus = ApplicationStatus.objects.filter(applicantID_id=instance.pk)
+    renewal = ApplicationRenewalTransactionDetail.objects.filter(applicantID_id=instance.pk)
+
     context = {
         'instances': instance,
         'applicantPersonEmployer': applicant_person_employed,
@@ -619,13 +699,44 @@ def applicantDashboard(request):
         'applicantNurseStaff': applicant_nurse_staff,
         'applicant_campus': applicant_campus,
         'applicant_other_details': applicant_other_details,
+        'trans':trans,
+        'formStatus':formStatus,
+        'renewal':renewal
     }
     return render(request,'home/customer/applicantDashboard.html',context)
 
 # New Applicant Profile
 def applicantProfile(request):
     instance = get_object_or_404(ApplicantLoginDetail,userID_id = request.user.pk)
+    applicant = get_object_or_404(Applicant, applicantUserID__userID_id=request.user.pk)
+
     context = {
-        'instances': instance
+        'instances': instance,
+        'applicant':applicant
     }
     return render(request,'home/customer/applicantProfile.html',context)
+
+
+
+def download_certificate(request):
+    instance = get_object_or_404(Applicant, applicantUserID__userID_id=request.user.pk)
+    certi = Certificate.objects.filter(applicantID_id=instance.pk).last()
+    fa = ApplicantFacilities.objects.filter(applicantID_id=instance.pk)
+    facilities = []
+    for f in fa:
+        facilities.append(f.facilitiesID.name)
+
+
+    context = {
+        'instance': instance,
+        'certi': certi,
+        'facilities':",".join(facilities)
+
+    }
+
+    response = HttpResponse(content_type="application/pdf")
+    response['Content-Disposition'] = "report.pdf"
+    html = render_to_string("home/customer/certicate.html",context )
+
+    HTML(string=html).write_pdf(response, stylesheets=[CSS(string='@page { size: A4 landscape; margin: .3cm ; }')])
+    return response

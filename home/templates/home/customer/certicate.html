@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Certificate</title>
+    <style>
+        .dotted{
+          border-bottom: 1px dashed #000;
+          text-decoration: none;
+             padding-right:50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="width:1000px; height:640px; padding:20px; border: 20px solid #703333">
+        <div style="width:950px; height:590px; padding:20px; border: 5px solid #f09d21">
+            <div>
+                <img src="http://nursinghome.manipurdrugscontrol.in/static/images/logo.png" alt="Logo" width="50" height="60" style="padding-right:500px;width: 100px;height: 100px;">
+            </div>
+            <div style="text-align: center;">
+                <span style="font-size:25px; font-weight:bold; color: darkblue">GOVERNMENT OF MANIPUR</span><br>
+                <span style="font-size:40px; font-weight:bold; color: darkblue">DIRECTORATE OF HEALTH SERVICES</span>
+                <br>
+                <span style="font-size:30px; font-weight:bold; color: darkblue">MANIPUR</span>
+                <br>
+                <span style="font-size:25px; color: red">Certificate of Registration under Section 5 of the</span><br>
+                <span style="font-size:25px; color: red">Manipur Nursing Homes and Clinics Registration Act, 1992</span>
+                    <br><br>
+                </div> 
+            <span style="font-size:20px;color: black; text-align: justify; line-height: 30px;"><i>This is to certify that Shri/Smt/Dr. <b style="text-decoration-style: dotted;" class="dotted">{{ instance.name }}</b> has been registered under the Manipur Nursing Homes and Clinics Registration Acts, 1992 in respect of
+                 <b style="text-decoration-line: underline; text-decoration-style: dotted;" class="dotted">{{ instance.typeOfApplicationCategory }}</b> situated at <b style="text-decoration-style: dotted;" class="dotted">{{ instance.addressOfApplicant }}</b> and has been  authorized to carry on the said nursing homes/Clinics</i> </span><br><br>
+                <div style="position: absolute; text-align: initial; line-height: 20px">
+                    <span style="font-size:28px;color: darkblue; font-weight: bold;font-style:italic;">In the facilities of  <span style="text-decoration-line: underline; text-decoration-style: dotted; padding-right:500px;" class="dotted" >{{ facilities }}</span> </span><br><br><br>
+                    <span style="font-size:20px; color: black">Registration No.:<u class="dotted" style="text-decoration-style: dotted;padding-right: 2px;">{{ instance.enrollmentNumber }}</u> </span><br>
+                    <span style="font-size:20px; color: black"> Date of Registration: <u style="text-decoration-style: dotted;">{{ certi.startDate }}</u></span><br>
+                    <span style="font-size:20px;color: black">Place: <u style="text-decoration-style: dotted;">Manipur</u> </span><br>
+                    <span style="font-size:20px;color: black">Date of issue of Certificate: <u style="text-decoration-style: dotted;">{{ certi.startDate }}</u></span><br>
+                    <span style="font-size:20px;color: black">This Certificate shall be valid till {{ certi.endDate }} </span><br><br>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

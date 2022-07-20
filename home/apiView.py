@@ -48,6 +48,7 @@ def ApplicantBasicApiView(request):
             provisionForEmergency = request.POST.get('provisionForEmergency')
             registrationNumber = request.POST.get('registrationNumber')
             registrationYear = request.POST.get('registrationYear')
+            payableAmount = request.POST.get('payableAmount')
 
 
             ApplicantDB = Applicant.objects.get(applicantUserID__userID_id=request.user.pk)
@@ -85,6 +86,7 @@ def ApplicantBasicApiView(request):
             ApplicantDB.provisionForEmergency = provisionForEmergency
             ApplicantDB.registrationNumber = registrationNumber
             ApplicantDB.registrationYear = registrationYear
+            ApplicantDB.payableAmount = float(payableAmount)
             ApplicantDB.save()
             return JsonResponse({'message': 'success'}, safe=False)
         except:
@@ -237,8 +239,16 @@ def CheckListOtherDetailsApiView(request):
         try:
             methodOfBioMedicalWasteFile = request.FILES['methodOfBioMedicalWasteFile']
             MPCBFile = request.FILES['MPCBFile']
-            AERBFile = request.FILES['AERBFile']
-            PNDTFile = request.FILES['PNDTFile']
+            try:
+                AERBFile = request.FILES['AERBFile']
+            except:
+                AERBFile = None
+            try:
+
+                PNDTFile = request.FILES['PNDTFile']
+            except:
+                PNDTFile = None
+
             EPF = request.POST.get('EPF')
             NonForfeitureFile = request.FILES['NonForfeitureFile']
             FireSafetySystemFile = request.FILES['FireSafetySystemFile']
@@ -307,9 +317,27 @@ def CampusDetailsApiView(request):
 def RequestForApplicantApprovalApiView(request):
     if request.method == 'POST':
         try:
+            depositAmount = request.POST.get('depositAmount')
+            depositTransactionID = request.POST.get('depositTransactionID')
+            tDate = request.POST.get('tDate')
+            depositReceipt = request.FILES['depositReceipt']
             ap = Applicant.objects.get(applicantUserID__userID_id=request.user.pk)
             ap.isDetailCompletelySubmitted = True
+            trans = ApplicationTransactionDetail()
+            trans.applicantID_id = ap.pk
+            trans.amount = depositAmount
+            trans.transactionID = depositTransactionID
+            trans.transactionDate = tDate
+            trans.receiptFile = depositReceipt
+            trans.save()
             ap.save()
+            statusDetail = ApplicationStatus()
+            statusDetail.applicantID_id = ap.pk
+            statusDetail.applicant_remark = "Application Submitted by Applicant"
+            statusDetail.admin_remark = "Application Submitted by Applicant"
+            statusDetail.statusID_id = 1
+            statusDetail.createdBy = request.user.username
+            statusDetail.save()
             return JsonResponse({'message': 'success'}, safe=False)
         except:
             return JsonResponse({'message': 'error'}, safe=False)
@@ -331,5 +359,26 @@ def applicantChangesPasswordApiView(request):
                 user.set_password(newPassword)
                 user.save()
                 return JsonResponse({'message': 'success'}, safe=False)
+        except:
+            return JsonResponse({'message': 'error'}, safe=False)
+
+
+@csrf_exempt
+def RenewalPaymentRequestApiView(request):
+    if request.method == 'POST':
+        try:
+            depositAmount = request.POST.get('depositAmount')
+            depositTransactionID = request.POST.get('depositTransactionID')
+            tDate = request.POST.get('tDate')
+            depositReceipt = request.FILES['depositReceipt']
+            ap = Applicant.objects.get(applicantUserID__userID_id=request.user.pk)
+            trans = ApplicationRenewalTransactionDetail()
+            trans.applicantID_id = ap.pk
+            trans.amount = depositAmount
+            trans.transactionID = depositTransactionID
+            trans.transactionDate = tDate
+            trans.receiptFile = depositReceipt
+            trans.save()
+            return JsonResponse({'message': 'success'}, safe=False)
         except:
             return JsonResponse({'message': 'error'}, safe=False)

@@ -5,11 +5,11 @@
 {% endblock %}
 {% block customCss %}
     <style>
-    .ui.piled.segment, .ui.piled.segments {
-    margin: 1em 0;
+        .ui.piled.segment, .ui.piled.segments {
+            margin: 1em 0;
 
-    z-index: auto;
-}
+            z-index: auto;
+        }
     </style>
 {% endblock %}
 {% block body %}
@@ -21,406 +21,458 @@
         <p>Check list for Fresh Registration of Clinics under the Manipur Nursing Homes and Clinics RegistrationsAct,
             1992 (MNHCR Act).</p>
 
-<form  method="post"> {% csrf_token %}
-        <table class="ui very padded table">
-            <thead>
-            <tr>
-                <th>Sl. No.</th>
-                <th>Documents/Certificates/Information</th>
-                <th>Submitted <br>(Yes/No)</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
+        <form method="post"> {% csrf_token %}
+            <table class="ui very padded table">
+                <thead>
+                <tr>
+                    <th>Sl. No.</th>
+                    <th>Documents/Certificates/Information</th>
+                    <th>Submitted <br>(Yes/No)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
 
-                <td>Forwarding letter to the Director of Heath Services
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="forwardingLetter" {% if checklist.forwardingLetter == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
+                    <td>Forwarding letter to the Director of Heath Services
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="forwardingLetter" {% if checklist.forwardingLetter == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
 
-                <td>Form - A
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="formA" {% if checklist.formA == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
+                    <td>Form - A
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="formA" {% if checklist.formA == True %} checked {% endif %}
+                                   disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
 
-                <td>Campus
-                    <ol style="list-style-type:upper-roman">
-                        <li>Parking space - Description</li>
-                        <li>Building Structure - pucca, semi-pucca etc</li>
-                        <li>Number of floor</li>
-                        <li>Number of rooms used , area of rooms</li>
-                        <li>Schematic diagram of floor wise rooms with labelling.</li>
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="campus" {% if checklist.campus == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Staff list
-                    <br>
-                    (Separate list for doctors, nurses and other staffs etc.)
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="stafflist" {% if checklist.stafflist == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Academic Qualification Certificates & Registration Certificates
-                    (MMC for Doctors, Dental Tribunal for Dental Surgeons and MNC
-                    for nurses)
-                    <ol style="list-style-type:upper-roman">
-                        <li>Proprietor</li>
-                        <li>Managerial staffs</li>
-                        <li>Doctors</li>
-                        <li>Nurses</li>
-                        <li> Laboratory Technician</li>
-                        <li>Radiology Technicians</li>
-                        <li>Dialysis Technicians</li>
-                        <li>Pharmacist</li>
-                        <li>Ophthalmic Asst./Optometrist</li>
-                        <li>Physiotherapist</li>
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="certificates" {% if checklist.certificates == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Rates/Tariff
-                    <ol style="list-style-type:upper-roman">
-                        <li>OPD</li>
-                        <li>General wards</li>
-                        <li>Special/Paying accommodation</li>
-                        <li>Treatment charges</li>
-                        <li>Laboratory Investigations, X-ray etc.</li>
-                        <li>Others if any</li>
+                    <td>Campus
+                        <ol style="list-style-type:upper-roman">
+                            <li>Parking space - Description</li>
+                            <li>Building Structure - pucca, semi-pucca etc</li>
+                            <li>Number of floor</li>
+                            <li>Number of rooms used , area of rooms</li>
+                            <li>Schematic diagram of floor wise rooms with labelling.</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="campus" {% if checklist.campus == True %} checked {% endif %}
+                                   disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Staff list
+                        <br>
+                        (Separate list for doctors, nurses and other staffs etc.)
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="stafflist" {% if checklist.stafflist == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Academic Qualification Certificates & Registration Certificates
+                        (MMC for Doctors, Dental Tribunal for Dental Surgeons and MNC
+                        for nurses)
+                        <ol style="list-style-type:upper-roman">
+                            <li>Proprietor</li>
+                            <li>Managerial staffs</li>
+                            <li>Doctors</li>
+                            <li>Nurses</li>
+                            <li> Laboratory Technician</li>
+                            <li>Radiology Technicians</li>
+                            <li>Dialysis Technicians</li>
+                            <li>Pharmacist</li>
+                            <li>Ophthalmic Asst./Optometrist</li>
+                            <li>Physiotherapist</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="certificates" {% if checklist.certificates == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Rates/Tariff
+                        <ol style="list-style-type:upper-roman">
+                            <li>OPD</li>
+                            <li>General wards</li>
+                            <li>Special/Paying accommodation</li>
+                            <li>Treatment charges</li>
+                            <li>Laboratory Investigations, X-ray etc.</li>
+                            <li>Others if any</li>
 
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="ratesOrTraffic" {% if checklist.ratesOrTraffic == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Rent affidavit from the land owner /
-                    Copy of Patta, if the applicant owns the land.
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="ratesOrTraffic" {% if checklist.ratesOrTraffic == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Rent affidavit from the land owner /
+                        Copy of Patta, if the applicant owns the land.
 
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"  id="rentCopy" {% if checklist.rentCopy == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Appointment order with nature of employment
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="appointmentOrder" {% if checklist.appointmentOrder == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Acceptance Certificate by the staff
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="acceptanceCertificate" {% if checklist.acceptanceCertificate == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Method of Bio-Medical Waste Disposal/
-                    Certificate from CBWTF.
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="methodOfWasteDisposal" {% if checklist.methodOfWasteDisposal == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>MPCB Consent to operatelestablish, Authorization certificate
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="mpcb" {% if checklist.mpcb == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>12</td>
-                <td>AERB Authorization for X-Ray, CT-Scan & MRI installation.
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="aerb" {% if checklist.aerb == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>13</td>
-                <td>(PC)PNDT certificate from FW dept. for USG installation.
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="pndt" {% if checklist.pndt == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>14</td>
-                <td>Number of beds
-                    <ol style="list-style-type:upper-roman">
-                        <li>Maternity</li>
-                        <li>Others</li>
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="beds" {% if checklist.beds == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td>EPF scheme application (> 20 staffs )
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="epf" {% if checklist.epf == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>16</td>
-                <td>Issue a Certificate for Non-Forfeiture of Original Certificates of
-                    the staffs
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="certifcateOfStaff" {% if checklist.certifcateOfStaff == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>17</td>
-                <td>Fire Safety System adopted including escape door, stairs,
-                    signage etc. No Objection Certificate from the Fire Service
-                    Dept.
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="fire" {% if checklist.fire == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>18</td>
-                <td>Operation Theatre:
-                    <ol style="list-style-type:upper-roman">
-                        <li>outlay</li>
-                        <li>Zones</li>
-                        <li>number</li>
-                        <li>major/minor,</li>
-                        <li>equipments list of O.T.</li>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="rentCopy" {% if checklist.rentCopy == True %} checked {% endif %}
+                                   disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Appointment order with nature of employment
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="appointmentOrder" {% if checklist.appointmentOrder == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Acceptance Certificate by the staff
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="acceptanceCertificate"
+                                    {% if checklist.acceptanceCertificate == True %} checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Method of Bio-Medical Waste Disposal/
+                        Certificate from CBWTF.
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="methodOfWasteDisposal"
+                                    {% if checklist.methodOfWasteDisposal == True %} checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>MPCB Consent to operatelestablish, Authorization certificate
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="mpcb" {% if checklist.mpcb == True %} checked {% endif %}
+                                   disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>AERB Authorization for X-Ray, CT-Scan & MRI installation.
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="aerb" {% if checklist.aerb == True %} checked {% endif %}
+                                   disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>(PC)PNDT certificate from FW dept. for USG installation.
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="pndt" {% if checklist.pndt == True %} checked {% endif %}
+                                   disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Number of beds
+                        <ol style="list-style-type:upper-roman">
+                            <li>Maternity</li>
+                            <li>Others</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="beds" {% if checklist.beds == True %} checked {% endif %}
+                                   disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>EPF scheme application (> 20 staffs )
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="epf" {% if checklist.epf == True %} checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Issue a Certificate for Non-Forfeiture of Original Certificates of
+                        the staffs
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="certifcateOfStaff" {% if checklist.certifcateOfStaff == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Fire Safety System adopted including escape door, stairs,
+                        signage etc. No Objection Certificate from the Fire Service
+                        Dept.
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="fire" {% if checklist.fire == True %} checked {% endif %}
+                                   disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Operation Theatre:
+                        <ol style="list-style-type:upper-roman">
+                            <li>outlay</li>
+                            <li>Zones</li>
+                            <li>number</li>
+                            <li>major/minor,</li>
+                            <li>equipments list of O.T.</li>
 
-                    </ol>
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="operationTheater" {% if checklist.operationTheater == True %} checked {% endif %} disabled>
-                        <label></label>
+                        </ol>
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="operationTheater" {% if checklist.operationTheater == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Equipments list of other specialties
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="equipments" {% if checklist.equipments == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Availability of emergency medicines
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="emergencyMedicines" {% if checklist.emergencyMedicines == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>Availability of round the clock chemist shop
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="chemistShop" {% if checklist.chemistShop == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>Professional Tax
+                    </td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="professionalTax" {% if checklist.professionalTax == True %}
+                                   checked {% endif %} disabled>
+                            <label></label>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <div class="ui segment" style="background-color: beige">
+                <div class="ui form" style="width: 100%">
+
+                    <div class="field">
+                        <label>Application Status</label>
+                        <select class="ui selection dropdown" name="aStatus" id="aStatus" onchange="changeStatus()">
+                            <option value="">Select Status</option>
+                            {% for status in status %}
+                                <option value="{{ status.pk }}">{{ status.status }}</option>
+                            {% endfor %}
+
+
+                        </select>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td>19</td>
-                <td>Equipments list of other specialties
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="equipments" {% if checklist.equipments == True %} checked {% endif %} disabled>
-                        <label></label>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Remark to Applicant:</label>
+                            <textarea rows="3" id="eRemark"></textarea>
+                        </div>
+                        <div class="field">
+                            <label>Internal Remark:</label>
+                            <textarea rows="3" id="iRemark"></textarea></div>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td>20</td>
-                <td>Availability of emergency medicines
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="emergencyMedicines" {% if checklist.emergencyMedicines == True %} checked {% endif %} disabled>
-                        <label></label>
+
+                    <div class="two fields" id="cDate">
+                        <div class="field">
+                            <label>Certificate Start Date</label>
+                            <div class="ui calendar" id="rangestart">
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input type="text" placeholder="Start" id="startDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Certificate End Date</label>
+                            <div class="ui calendar" id="rangeend">
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input type="text" placeholder="End" id="endDate">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td>21</td>
-                <td>Availability of round the clock chemist shop
-                </td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox"    id="chemistShop" {% if checklist.chemistShop == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>22</td>
-                <td>Professional Tax
-                </td>
-                <td>
-                    <div class="ui toggle checkbox" >
-                        <input type="checkbox"    id="professionalTax" {% if checklist.professionalTax == True %} checked {% endif %} disabled>
-                        <label></label>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    <div class="ui form" style="width: 100%">
-  <div class="field">
-    <label>Remark given during inspection:</label>
-    <textarea rows="3"  id="remarkByInspection" disabled>{{ checklist.remarkByInspection }}</textarea>
-  </div>
-      <div class="field">
-    <label>Remark By RO:</label>
-    <textarea rows="3"  id="remarkByRO" >{{ checklist.remarkByInspection }}</textarea>
-  </div>
+                    <input type="hidden" id="applicantID" value="{{ instances.pk }}">
+
+                </div>
+            </div>
 
 
+            <div class="ui form">
 
-</div>
-
-
-
-    <input type="hidden" id="applicantID" value="{{ instances.pk }}">
-
-<div class="ui form">
-   <h4>Provide License from</h4>
-  <div class="two fields">
-    <div class="field">
-      <label>Start date</label>
-      <div class="ui calendar" id="rangestart">
-        <div class="ui input left icon">
-          <i class="calendar icon"></i>
-          <input type="text" placeholder="Start" id="startDate">
-        </div>
-      </div>
+            </div>
+        </form>
     </div>
-    <div class="field">
-      <label>End date</label>
-      <div class="ui calendar" id="rangeend">
-        <div class="ui input left icon">
-          <i class="calendar icon"></i>
-          <input type="text" placeholder="End" id="endDate">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-    </div>
 
-      <div class="field" style="margin-top: 10px;margin-bottom: 10px;width: 100%">
-                 <button type="button" onclick="approve()" class="fluid ui button primary">Approve and Issue Certificate</button>
+    <div class="field" style="margin-top: 10px;margin-bottom: 10px;width: 100%">
+        <button type="button" onclick="approve()" class="fluid ui button primary">Submit</button>
 
-        </div>
+    </div>
 
 {% endblock %}
 {% block myjs %}
     <script>
-$('#rangestart').calendar({
-  type: 'date',
-    formatter: {
-                        date: function (date, settings) {
-                            if (!date) return '';
-                            var day = date.getDate();
-                            var month = date.getMonth() + 1;
-                            var year = date.getFullYear();
-                            return day + '/' + month + '/' + year;
-                        }
-                    },
-  endCalendar: $('#rangeend')
-});
-$('#rangeend').calendar({
-  type: 'date',
-    formatter: {
-                        date: function (date, settings) {
-                            if (!date) return '';
-                            var day = date.getDate();
-                            var month = date.getMonth() + 1;
-                            var year = date.getFullYear();
-                            return day + '/' + month + '/' + year;
-                        }
-                    },
-  startCalendar: $('#rangestart')
-});
-{#datetime.strptime(productDate, '%d/%m/%Y')#}
 
-     function approve() {
+    function changeStatus() {
+        var aStatus = $('#aStatus').val();
+        if(aStatus === '4'){
+            $('#cDate').css('display','flex')
+        }
+        else{
+            $('#cDate').css('display','none')
+        }
+
+    }
 
 
-            var remarkByRO = $('#remarkByRO').val();
+        $('#rangestart').calendar({
+            type: 'date',
+            formatter: {
+                date: function (date, settings) {
+                    if (!date) return '';
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                    return day + '/' + month + '/' + year;
+                }
+            },
+            endCalendar: $('#rangeend')
+        });
+        $('#rangeend').calendar({
+            type: 'date',
+            formatter: {
+                date: function (date, settings) {
+                    if (!date) return '';
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                    return day + '/' + month + '/' + year;
+                }
+            },
+            startCalendar: $('#rangestart')
+        });
+
+        function approve() {
+
+
             var applicantID = $('#applicantID').val();
             var startDate = $('#startDate').val();
             var endDate = $('#endDate').val();
+            var aStatus = $('#aStatus').val();
+            var eRemark = $('#eRemark').val();
+            var iRemark = $('#iRemark').val();
 
+if (aStatus !== '') {
             var form_data = new FormData();
-            form_data.append('remarkByRO', remarkByRO);
             form_data.append('applicantID', applicantID);
             form_data.append('startDate', startDate);
             form_data.append('endDate', endDate);
+            form_data.append('aStatus', aStatus);
+            form_data.append('eRemark', eRemark);
+            form_data.append('iRemark', iRemark);
 
             $.ajax({
                 type: 'post',
@@ -441,7 +493,7 @@ $('#rangeend').calendar({
                                 position: 'top center'
 
                             });
-                        window.location.href = "{% url 'homeApp:inspectionApprovedList' %}";
+                        window.location.href = "{% url 'homeApp:approval_list' %}";
                     }
                     else if (response.message === 'error') {
                         $('body')
@@ -476,8 +528,19 @@ $('#rangeend').calendar({
                 }
             });
 
+}else{
+    $('body')
+                    .toast({
+                        class: 'warning',
+                        title: 'Fields Requires',
+                        message: 'All fields are required',
+                        showProgress: 'bottom',
+                        classProgress: 'red',
+                        position: 'top center',
 
-
+                    })
+                ;
+}
         }
 
     </script>

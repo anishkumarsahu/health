@@ -244,6 +244,101 @@
                 </table>
             </div>
         </div>
+     <div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">Payment Details.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+                            <thead>
+                            <tr>
+                                <th>Amount</th>
+                                <th>Transaction ID</th>
+                                <th>Transaction Date</th>
+                                <th>Receipt</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in trans %}
+                                <tr>
+                                    <td>{{ c.amount }}</td>
+                                    <td>{{ c.transactionID }}</td>
+                                    <td>{{ c.transactionDate }}</td>
+                                    <td><a href="{{ c.receiptFile.url }}" download>DOWNLOAD</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        <div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">Renewal Payment Details.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+                            <thead>
+                            <tr>
+                                <th>Amount</th>
+                                <th>Transaction ID</th>
+                                <th>Transaction Date</th>
+                                <th>Receipt</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in renewal %}
+                                <tr>
+                                    <td>{{ c.amount }}</td>
+                                    <td>{{ c.transactionID }}</td>
+                                    <td>{{ c.transactionDate }}</td>
+                                    <td><a href="{{ c.receiptFile.url }}" download>DOWNLOAD</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        <div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">Application Status.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+                            <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Applicant Remark</th>
+                                <th>Internal Remark</th>
+                                <th>Datetime</th>
+                                <th>Created By</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in formStatus %}
+                                <tr>
+                                    <td>{{ c.statusID.status }}</td>
+                                    <td>{{ c.applicant_remark }}</td>
+                                    <td>{{ c.admin_remark }}</td>
+                                    <td>{{ c.datetime }}</td>
+                                    <td>{{ c.createdBy }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    <div class="ui raised segment" style="width: 100%">
+                    <h4 class="ui header">Application Facilities.</h4>
+                    <div class="ui segment">
+                        <table class="ui celled table">
+
+                            <tbody>
+                            {% for c in facilities %}
+                                <tr>
+                                    <td>{{ c.facilitiesID.name }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
     </div>
 {% if instances.isCheckedByInspector == False %}
  <a href="{% url 'homeApp:verify_applicant_checklist_inspection' id=instances.pk %}" target="_blank" class="fluid ui button primary">Open Checklist to Verify</a>
